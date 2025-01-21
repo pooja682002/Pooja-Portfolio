@@ -1,0 +1,51 @@
+
+
+
+.navbar {
+  background-color: #f8f9fa; /* Light background */
+  padding: 10px 20px; /* Top and bottom padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.icons {
+  margin-left: -200px;
+  display: flex;
+  justify-content: flex-start; /* Align icons to the left */
+  align-items: center; /* Center vertically within the navbar */
+  gap: 50px; /* Equal spacing between icons */
+  margin-right: auto; /* Push the navigation links to the right */
+}
+
+
+
+.icons a {
+  color: #333; /* Dark color for icons */
+  font-size: 1.5rem; /* Icon size */
+  transition: color 0.3s ease; /* Smooth transition on hover */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.icons a:hover {
+  color: #95b8dd; /* Blue color on hover */
+}
+
+.navbar-nav {
+  display: flex; /* Flexbox for the navigation links */
+  align-items: center; /* Center vertically within the navbar */
+  margin-left: auto; /* Push the navigation links to the far right */
+}
+
+.nav-item {
+  margin-left: 20px; /* Spacing between navigation links */
+}
+
+.nav-link {
+  color: #333; /* Dark color for links */
+  font-size: 1rem; /* Font size */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.nav-link:hover {
+  color: #7de2f0; /* Blue color on hover */
+}

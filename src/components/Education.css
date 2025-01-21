@@ -1,0 +1,16 @@
+.education {
+    padding: 50px;
+    text-align: center;
+    background-color: #e9ecef;
+  }
+  
+  .education .education-item {
+    margin-top: 20px;
+  }
+  
+  .education .education-item i {
+    font-size: 2rem;
+    margin-right: 10px;
+  }
+  
+  
