@@ -1,11 +1,58 @@
-.about {
-    padding: 50px;
-    text-align: center;
-    background-color: #f8f9fa;
-  }
-  
-  .about h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f5e7; /* Match the home page background */
+  height: 100vh; /* Same height as the home page */
+  padding: 50px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-picture img {
+  width: 400px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px; /* Slightly rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-details {
+  max-width: 50%;
+  padding-left: 30px;
+}
+
+.about-details h2 {
+  font-size: 3rem;
+  color: #0c1111;
+  margin-bottom: 1rem;
+}
+
+.about-details p {
+  font-size: 1.2rem;
+  color: #377e9b;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.about-list li {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.about-list li strong {
+  color: #0c1111;
+}
