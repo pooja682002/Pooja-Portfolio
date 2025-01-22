@@ -9,4 +9,49 @@
     margin: 0;
     font-size: 0.9rem;
   }
-  
+  /* Responsive Design */
+
+/* For Extra Small Devices (Phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .footer {
+    padding: 15px; /* Reduce padding for smaller screens */
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 0.8rem; /* Smaller font size for better readability */
+  }
+}
+
+/* For Small Devices (Tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .footer {
+    padding: 18px; /* Adjust padding for tablet screens */
+  }
+
+  .footer p {
+    font-size: 0.85rem; /* Slightly larger font size for tablets */
+  }
+}
+
+/* For Medium Devices (Desktops, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .footer {
+    padding: 20px; /* Standard padding */
+  }
+
+  .footer p {
+    font-size: 0.9rem; /* Default font size */
+  }
+}
+
+/* For Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) {
+  .footer {
+    padding: 20px; /* Keep standard padding for large screens */
+  }
+
+  .footer p {
+    font-size: 0.9rem; /* Maintain default font size */
+  }
+}

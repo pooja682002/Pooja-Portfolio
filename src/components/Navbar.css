@@ -1,51 +1,197 @@
 
 
 
+/* Navbar fixed at top */
 .navbar {
-  background-color: #f8f9fa; /* Light background */
-  padding: 10px 20px; /* Top and bottom padding */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .icons {
   margin-left: -200px;
   display: flex;
-  justify-content: flex-start; /* Align icons to the left */
-  align-items: center; /* Center vertically within the navbar */
-  gap: 50px; /* Equal spacing between icons */
-  margin-right: auto; /* Push the navigation links to the right */
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+  margin-right: auto;
 }
 
-
-
 .icons a {
-  color: #333; /* Dark color for icons */
-  font-size: 1.5rem; /* Icon size */
-  transition: color 0.3s ease; /* Smooth transition on hover */
-  text-decoration: none; /* Remove underline from links */
+  color: #333;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .icons a:hover {
-  color: #95b8dd; /* Blue color on hover */
+  color: #95b8dd;
 }
 
 .navbar-nav {
-  display: flex; /* Flexbox for the navigation links */
-  align-items: center; /* Center vertically within the navbar */
-  margin-left: auto; /* Push the navigation links to the far right */
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 }
 
 .nav-item {
-  margin-left: 20px; /* Spacing between navigation links */
+  margin-left: 20px;
 }
 
 .nav-link {
-  color: #333; /* Dark color for links */
-  font-size: 1rem; /* Font size */
-  text-decoration: none; /* Remove underline */
-  transition: color 0.3s ease; /* Smooth transition on hover */
+  color: #333;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #7de2f0; /* Blue color on hover */
+  color: #7de2f0;
+}
+
+body {
+  padding-top: 60px;
+}
+
+/* Media Queries for responsiveness */
+
+/* For Extra Small Devices (Phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .icons {
+    margin-left: 0;
+    gap: 20px;
+  }
+
+  .icons a {
+    font-size: 1.2rem;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+  }
+
+  body {
+    padding-top: 80px; /* To prevent overlap with the navbar */
+  }
+}
+
+/* For Small Devices (Tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .icons {
+    margin-left: 0;
+    gap: 30px;
+  }
+
+  .icons a {
+    font-size: 1.3rem;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+  }
+
+  body {
+    padding-top: 80px; /* To prevent overlap with the navbar */
+  }
+}
+
+/* For Medium Devices (Desktops, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .icons {
+    margin-left: -100px;
+    gap: 40px;
+  }
+
+  .icons a {
+    font-size: 1.4rem;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin-left: 20px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  body {
+    padding-top: 80px; /* To prevent overlap with the navbar */
+  }
+}
+
+/* For Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .icons {
+    margin-left: -200px;
+    gap: 50px;
+  }
+
+  .icons a {
+    font-size: 1.5rem;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin-left: 20px;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  body {
+    padding-top: 60px;
+  }
 }

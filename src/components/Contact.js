@@ -12,8 +12,30 @@ function Contact() {
           <p>Feel free to reach out using the form below or connect with me on social media!</p>
         </div>
 
+
+        {/* Social Icons */}
+        <Row className="justify-content-center mt-4">
+          <Col lg={8} md={10} sm={12}>
+            <div className="social-links text-center">
+              <a href="https://github.com/pooja682002" target="_blank" rel="noopener noreferrer" className="social-icon">
+                <i className="fab fa-github"></i>
+              </a>
+              <a href="https://linkedin.com/in/pooja-joseph" target="_blank" rel="noopener noreferrer" className="social-icon">
+                <i className="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:pooja.azhi@gmail.com" className="social-icon">
+                <i className="fas fa-envelope"></i>
+              </a>
+            </div>
+          </Col>
+        </Row>
+
+
+
+
+
         {/* Contact Form */}
-        <Row className="justify-content-center">
+        <Row className="justify-content-center mt-4">
           <Col lg={8} md={10} sm={12}>
             <Form className="contact-form">
               <Form.Group controlId="formName" className="mb-4">
@@ -37,22 +59,7 @@ function Contact() {
           </Col>
         </Row>
 
-        {/* Social Icons */}
-        <Row className="justify-content-center mt-4">
-          <Col lg={8} md={10} sm={12}>
-            <div className="social-links text-center">
-              <a href="https://github.com/pooja682002" target="_blank" rel="noopener noreferrer" className="social-icon">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="https://linkedin.com/in/pooja-joseph" target="_blank" rel="noopener noreferrer" className="social-icon">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href="mailto:pooja.azhi@gmail.com" className="social-icon">
-                <i className="fas fa-envelope"></i>
-              </a>
-            </div>
-          </Col>
-        </Row>
+        
       </Container>
     </section>
   );

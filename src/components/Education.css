@@ -82,3 +82,152 @@
     transform: translateY(0);
   }
 }
+/* Responsive Design */
+
+/* For Extra Small Devices (Phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .education-section .header h2 {
+    font-size: 2.5rem;
+    margin-top: 30px;
+  }
+
+  .education-section .header p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .education-cards {
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .education-card {
+    width: 90%; /* Adjust to fit smaller screens */
+    padding: 15px;
+  }
+
+  .education-card .icon img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .education-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .education-card p {
+    font-size: 0.9rem;
+  }
+}
+
+/* For Small Devices (Tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .education-section .header h2 {
+    font-size: 3rem;
+    margin-top: 40px;
+  }
+
+  .education-section .header p {
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+  }
+
+  .education-cards {
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 70px;
+  }
+
+  .education-card {
+    width: 80%; /* Adjust width for tablet screens */
+    padding: 18px;
+  }
+
+  .education-card .icon img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .education-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .education-card p {
+    font-size: 1rem;
+  }
+}
+
+/* For Medium Devices (Desktops, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .education-section .header h2 {
+    font-size: 3.5rem;
+    margin-top: 45px;
+  }
+
+  .education-section .header p {
+    font-size: 1.15rem;
+    margin-bottom: 35px;
+  }
+
+  .education-cards {
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 100px;
+  }
+
+  .education-card {
+    width: 280px;
+    padding: 20px;
+  }
+
+  .education-card .icon img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .education-card h3 {
+    font-size: 1.6rem;
+  }
+
+  .education-card p {
+    font-size: 1.1rem;
+  }
+}
+
+/* For Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) {
+  .education-section .header h2 {
+    font-size: 3.8rem;
+    margin-top: 50px;
+  }
+
+  .education-section .header p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+
+  .education-cards {
+    display: flex;
+    gap: 70px;
+    margin-top: 150px;
+  }
+
+  .education-card {
+    width: 300px;
+    padding: 20px;
+  }
+
+  .education-card .icon img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .education-card h3 {
+    font-size: 1.6rem;
+  }
+
+  .education-card p {
+    font-size: 1rem;
+  }
+}

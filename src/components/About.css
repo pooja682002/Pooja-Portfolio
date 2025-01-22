@@ -108,3 +108,96 @@
     transform: translateY(0) scale(1);
   }
 }
+/* Responsive Design */
+
+/* For Extra Small Devices (Phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .about-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .about-content {
+    margin-top: 30px;
+    font-size: 1rem;
+  }
+
+  .about-paragraph {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .circle {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* For Small Devices (Tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .about-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+
+  .about-content {
+    margin-top: 40px;
+    font-size: 1.1rem;
+  }
+
+  .about-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .circle {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* For Medium Devices (Desktops, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .about-title {
+    font-size: 3.5rem;
+    margin-bottom: 35px;
+  }
+
+  .about-content {
+    margin-top: 45px;
+    font-size: 1.15rem;
+  }
+
+  .about-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.75;
+  }
+
+  .circle {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+/* For Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) {
+  .about-title {
+    font-size: 4rem;
+    margin-bottom: 40px;
+  }
+
+  .about-content {
+    margin-top: 50px;
+    font-size: 1.2rem;
+  }
+
+  .about-paragraph {
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+
+  .circle {
+    width: 200px;
+    height: 200px;
+  }
+}

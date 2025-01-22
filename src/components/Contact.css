@@ -28,17 +28,21 @@
   }
   
   .contact-form {
+    text-align: left;
     background: #ffffff;
     padding: 30px 40px;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
+  
   .contact-form .form-control {
+    
     border-radius: 8px;
     margin-bottom: 20px;
     padding: 10px;
   }
+  
   
   .contact-form .btn-custom {
     background: #2c3e50;
