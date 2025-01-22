@@ -1,0 +1,61 @@
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .skill-logo {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  
+
+  /* Skills Section */
+.skills-section {
+  background-color: #f7f5e7;
+  padding: 50px 0;
+  min-height: 100vh;
+}
+
+.skills-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: #0e1113;
+
+}
+
+/* Skill Card */
+.skill-card {
+  margin-top: 50px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Skill Logo */
+.skill-logo {
+  height: 100px;
+  object-fit: contain;
+  margin: 10px auto;
+}
+
+/* Animation */
+.animate-card {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

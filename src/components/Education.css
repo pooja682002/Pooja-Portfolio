@@ -1,16 +1,84 @@
-.education {
-    padding: 50px;
-    text-align: center;
-    background-color: #e9ecef;
+.education-section {
+  background: linear-gradient(120deg, #f8f8f5,#f9f9f9);
+  padding: 60px 20px;
+  text-align: center;
+  min-height: 100vh;
+
+}
+
+.education-section .header h2 {
+  font-size: 3.8rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  animation: fadeInDown 1s ease-out;
+  margin-top: 50px;
+}
+
+.education-section .header p {
+  font-size: 1.2rem;
+  color: #34495e;
+  margin-bottom: 40px;
+  animation: fadeInDown 1.2s ease-out;
+}
+
+.education-cards {
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+  flex-wrap: wrap;
+  margin-top: 150px;
+}
+
+.education-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.education-card .icon {
+  margin-bottom: 15px;
+}
+
+.education-card .icon img {
+  width: 70px;
+  height: 70px;
+}
+
+.education-card h3 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.education-card p {
+  font-size: 1rem;
+  color: #34495e;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.education-card span {
+  font-size: 0.9rem;
+  color: #95a5a6;
+  font-style: italic;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .education .education-item {
-    margin-top: 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .education .education-item i {
-    font-size: 2rem;
-    margin-right: 10px;
-  }
-  
-  
+}
