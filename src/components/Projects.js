@@ -17,7 +17,7 @@ function Project() {
           <Card className="card-hover">
             <Card.Img
               variant="top"
-              src="/images/debris-detection.jpg"
+              src="/ML_IMG.jpg"
               alt="Deep Learning based Floating Debris Detection"
               className="project-image"
             />
@@ -27,7 +27,7 @@ function Project() {
                 A deep learning model using YOLOv3 for floating debris detection. Developed under the guidance of IIT, Palakkad.
               </Card.Text>
               <Link to="/projects/deep-learning-debris">
-                <Button variant="primary" className="btn-custom">View Details</Button>
+                <Button  className="btn-custom">View Details</Button>
               </Link>
             </Card.Body>
           </Card>
@@ -38,7 +38,7 @@ function Project() {
           <Card className="card-hover">
             <Card.Img
               variant="top"
-              src="/images/grievance-management.jpg"
+              src="/GMPIC.png"
               alt="Grievance Management System"
               className="project-image"
             />
@@ -48,7 +48,7 @@ function Project() {
                 A full-stack application for grievance management using React.js, Spring Boot, and PostgreSQL.
               </Card.Text>
               <Link to="/projects/grievance-management">
-                <Button variant="primary" className="btn-custom">View Details</Button>
+                <Button  className="btn-custom">View Details</Button>
               </Link>
             </Card.Body>
           </Card>
@@ -59,7 +59,7 @@ function Project() {
           <Card className="card-hover">
             <Card.Img
               variant="top"
-              src="/images/her-day-bot.jpg"
+              src="/HERDAY.png"
               alt="Her-day: Telegram Bot"
               className="project-image"
             />
@@ -69,28 +69,28 @@ function Project() {
                 A menstrual tracker bot built using Python, Git, and GitHub with automatic alert notifications.
               </Card.Text>
               <Link to="/projects/her-day-bot">
-                <Button variant="primary" className="btn-custom">View Details</Button>
+                <Button  className="btn-custom">View Details</Button>
               </Link>
             </Card.Body>
           </Card>
         </div>
 
-        {/* Calculator using HTML, CSS, and JavaScript */}
+        {/* Thenga-Online website using HTML, CSS, and JavaScript */}
         <div className="project-card">
           <Card className="card-hover">
             <Card.Img
               variant="top"
-              src="/images/calculator.jpg"
-              alt="Calculator using HTML, CSS, and JS"
+              src="/THENGA.png"
+              alt="THENGA"
               className="project-image"
             />
             <Card.Body>
-              <Card.Title>Calculator using HTML, CSS, and JS</Card.Title>
+              <Card.Title>Thenga-Online website using HTML, CSS, and JS</Card.Title>
               <Card.Text>
-                A responsive and intuitive calculator interface designed using HTML, CSS, and JavaScript.
+                An interactive and responsive online showing website for coconut shell products.
               </Card.Text>
               <Link to="/projects/calculator">
-                <Button variant="primary" className="btn-custom">View Details</Button>
+                <Button  className="btn-custom">View Details</Button>
               </Link>
             </Card.Body>
           </Card>

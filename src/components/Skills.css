@@ -1,6 +1,6 @@
 /* Skills Section */
 .skills-section {
-  background-color: #f7f5e7;
+  background: linear-gradient(135deg, #f7f5e7, #d0dfe9);
   padding: 50px 20px;
   min-height: 150vh;
   text-align: center;
@@ -14,7 +14,7 @@
 .skills-title {
   font-size: 3rem;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: -500px;
   margin-bottom: 40px;
   text-transform: uppercase;
   color: #0e1113;

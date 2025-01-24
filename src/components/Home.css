@@ -26,20 +26,38 @@
   color: #377e9b;
 }
 
+/* Button Styling */
 .btn {
   margin-left: 100px;
-  background-color: #668ab1;
-  color: white;
-  padding: 10px 20px;
+  color: #ffffff; /* White text for better visibility */
+  padding: 12px 30px;
   text-decoration: none;
-  border-radius: 5px;
-  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn:hover {
-  background-color: #a4b8ce;
+/* Pastel Button Theme */
+.pastel-btn {
+  background-color: #a7c7e7; /* Pastel blue */
 }
 
+.pastel-btn:hover {
+  background-color: #c7e3f3; /* Lighter pastel blue */
+  color: #0c1111; /* Darker text for visibility */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Slight enlargement */
+}
+
+.pastel-btn:active {
+  transform: scale(0.95);
+}
+
+/* Profile Image Styling */
 .profile-image img {
   width: 450px;
   height: 550px;
@@ -68,7 +86,7 @@
 
   .profile h1 {
     margin-left: 0;
-    font-size: 3rem; /* Reduced font size for better visibility */
+    font-size: 3rem;
   }
 
   .profile p {
@@ -79,7 +97,7 @@
   .btn {
     margin-left: 0;
     font-size: 0.9rem;
-    padding: 8px 15px;
+    padding: 10px 20px;
   }
 
   .profile-image img {
@@ -99,7 +117,7 @@
 
   .profile h1 {
     margin-left: 0;
-    font-size: 4rem; /* Adjust font size for smaller devices */
+    font-size: 4rem;
   }
 
   .profile p {

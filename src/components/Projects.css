@@ -1,7 +1,7 @@
 /* General Section Styling */
 .projects-section {
     padding: 80px 0;
-    background-color: #f9f9f9; /* Light gray background for sophistication */
+    background-color: #f7f5e7; /* Light gray background for sophistication */
     min-height: 80vh;
     text-align: center;
   }
@@ -21,16 +21,18 @@
     grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
     gap: 40px; /* Subtle space between cards */
     max-width: 1200px;
+    background-color: #f7f5e7;
     margin: 0 auto; /* Center the grid */
   }
   
   .project-card {
     
-    background-color: #ffffff;
+    background-color: #f7f5e7;
     border-radius: 20px; /* Rounded corners for a clean look */
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Soft deep shadow for cards */
     overflow: hidden; /* Ensure the border-radius applies smoothly */
     position: relative;
+    border: 15px inset #f7f5e7;
     transition: all 0.4s ease-in-out; /* Smooth transition for hover */
   }
   
@@ -43,6 +45,7 @@
   .card-body {
     padding: 30px;
     position: relative;
+    background-color: #f7f5e7;
     z-index: 1; /* Ensure content is above the shadow */
   }
   
@@ -66,21 +69,20 @@
   
   .btn-custom {
     align-items: center;
-    background-color: #f39c12; /* Warm amber color for CTA buttons */
+    background-color: #7c715f !important; /* Warm amber color for CTA buttons */
     color: white;
     font-weight: 600;
     padding: 12px 24px;
     border-radius: 50px; /* Pill-shaped button */
     transition: background-color 0.3s ease, transform 0.2s ease;
-    border: none;
+    border: none !important;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-left: -20px;
   }
   
   .btn-custom:hover {
-    background-color: #e67e22; /* Darker amber on hover */
-    transform: translateY(-5px); /* Button lifts on hover */
+    background-color: #63594a !important; /* Darker amber on hover */
   }
   
   .project-card::before {
