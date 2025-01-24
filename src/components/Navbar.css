@@ -1,42 +1,50 @@
-
-
-
 /* Navbar fixed at top */
-.navbar {
+.custom-navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1000;
   background-color: #f8f9fa;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
 }
 
-.icons {
-  margin-left: -200px;
+/* Body padding to prevent overlap */
+body {
+  padding-top: 70px;
+}
+
+/* Social Icons */
+.custom-icons {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  gap: 50px;
-  margin-right: auto;
+  margin-left: -200px;
+  gap: 50px; /* Space between icons */
 }
 
-.icons a {
+.custom-icons a {
   color: #333;
   font-size: 1.5rem;
-  transition: color 0.3s ease;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.icons a:hover {
+.custom-icons a:hover {
   color: #95b8dd;
 }
+/* Active Link Styling */
+.nav-link.active {
+  color: #7de2f0; /* Highlight color */
+  font-weight: bold;
+  border-bottom: 2px solid #7de2f0; /* Optional underline */
+  transition: color 0.3s, border-bottom 0.3s;
+}
 
+/* Navigation Links */
 .navbar-nav {
   display: flex;
   align-items: center;
-  margin-left: auto;
 }
 
 .nav-item {
@@ -54,144 +62,24 @@
   color: #7de2f0;
 }
 
-body {
-  padding-top: 60px;
-}
+/* Responsive Styles */
 
-/* Media Queries for responsiveness */
-
-/* For Extra Small Devices (Phones, less than 576px) */
+/* Small Devices */
 @media (max-width: 575.98px) {
-  .navbar {
-    padding: 10px 15px;
-  }
-
-  .icons {
-    margin-left: 0;
-    gap: 20px;
-  }
-
-  .icons a {
-    font-size: 1.2rem;
-  }
-
-  .navbar-nav {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-  }
-
-  .nav-item {
-    margin-left: 0;
-    margin-bottom: 10px;
-  }
-
-  .nav-link {
-    font-size: 1.1rem;
-  }
-
-  body {
-    padding-top: 80px; /* To prevent overlap with the navbar */
-  }
-}
-
-/* For Small Devices (Tablets, 576px to 767px) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .navbar {
-    padding: 10px 20px;
-  }
-
-  .icons {
-    margin-left: 0;
-    gap: 30px;
-  }
-
-  .icons a {
-    font-size: 1.3rem;
-  }
-
-  .navbar-nav {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-  }
-
-  .nav-item {
-    margin-left: 0;
-    margin-bottom: 15px;
-  }
-
-  .nav-link {
-    font-size: 1.1rem;
-  }
-
-  body {
-    padding-top: 80px; /* To prevent overlap with the navbar */
-  }
-}
-
-/* For Medium Devices (Desktops, 768px to 991px) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .navbar {
-    padding: 10px 20px;
-  }
-
-  .icons {
-    margin-left: -100px;
-    gap: 40px;
-  }
-
-  .icons a {
-    font-size: 1.4rem;
-  }
-
-  .navbar-nav {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .nav-item {
-    margin-left: 20px;
+  .custom-icons {
+    flex-wrap: wrap; /* Wrap icons if they don't fit */
+    gap: 10px;
   }
 
   .nav-link {
     font-size: 1rem;
-  }
-
-  body {
-    padding-top: 80px; /* To prevent overlap with the navbar */
+    text-align: center;
   }
 }
 
-/* For Large Devices (Desktops, 992px and up) */
-@media (min-width: 992px) {
-  .navbar {
-    padding: 10px 20px;
-  }
-
-  .icons {
-    margin-left: -200px;
-    gap: 50px;
-  }
-
-  .icons a {
-    font-size: 1.5rem;
-  }
-
-  .navbar-nav {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .nav-item {
-    margin-left: 20px;
-  }
-
-  .nav-link {
-    font-size: 1rem;
-  }
-
-  body {
-    padding-top: 60px;
+/* Medium Devices */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .custom-icons {
+    gap: 15px;
   }
 }

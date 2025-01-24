@@ -10,11 +10,17 @@ function Project() {
         <h2 className="section-title">My Projects</h2>
         <p>Click on any project to know more about the details and technology used.</p>
       </div>
-      
+
       <div className="projects-grid">
         {/* Deep Learning based Floating Debris Detection */}
         <div className="project-card">
           <Card className="card-hover">
+            <Card.Img
+              variant="top"
+              src="/images/debris-detection.jpg"
+              alt="Deep Learning based Floating Debris Detection"
+              className="project-image"
+            />
             <Card.Body>
               <Card.Title>Deep Learning based Floating Debris Detection</Card.Title>
               <Card.Text>
@@ -30,6 +36,12 @@ function Project() {
         {/* Grievance Management System */}
         <div className="project-card">
           <Card className="card-hover">
+            <Card.Img
+              variant="top"
+              src="/images/grievance-management.jpg"
+              alt="Grievance Management System"
+              className="project-image"
+            />
             <Card.Body>
               <Card.Title>Grievance Management System</Card.Title>
               <Card.Text>
@@ -45,6 +57,12 @@ function Project() {
         {/* Her-day: Telegram Bot */}
         <div className="project-card">
           <Card className="card-hover">
+            <Card.Img
+              variant="top"
+              src="/images/her-day-bot.jpg"
+              alt="Her-day: Telegram Bot"
+              className="project-image"
+            />
             <Card.Body>
               <Card.Title>Her-day: Telegram Bot</Card.Title>
               <Card.Text>
@@ -60,6 +78,12 @@ function Project() {
         {/* Calculator using HTML, CSS, and JavaScript */}
         <div className="project-card">
           <Card className="card-hover">
+            <Card.Img
+              variant="top"
+              src="/images/calculator.jpg"
+              alt="Calculator using HTML, CSS, and JS"
+              className="project-image"
+            />
             <Card.Body>
               <Card.Title>Calculator using HTML, CSS, and JS</Card.Title>
               <Card.Text>
@@ -72,7 +96,6 @@ function Project() {
           </Card>
         </div>
       </div>
-      
     </section>
   );
 }

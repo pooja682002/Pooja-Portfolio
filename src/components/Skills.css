@@ -1,146 +1,123 @@
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .skill-logo {
-      width: 80px;
-      height: 80px;
-    }
-  }
-  
-
-  /* Skills Section */
-.skills-section {
-  background-color: #f7f5e7;
-  padding: 50px 0;
-  min-height: 100vh;
-}
-
-.skills-title {
-  font-size: 2.8rem;
-  font-weight: bold;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  color: #0e1113;
-
-}
-
-/* Skill Card */
-.skill-card {
-  margin-top: 50px;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skill-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Skill Logo */
-.skill-logo {
-  height: 100px;
-  object-fit: contain;
-  margin: 10px auto;
-}
-
-/* Animation */
-.animate-card {
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-/* Responsive Design for Small Devices (max-width: 768px) */
-@media (max-width: 768px) {
-  .skill-logo {
-    width: 80px;
-    height: 80px;
-  }
-
-  /* Skills Section */
-  .skills-section {
-    padding: 40px 15px;
-  }
-
-  .skills-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-
-  /* Skill Card */
-  .skill-card {
-    margin-top: 30px;
-    padding: 20px;
-  }
-
-  /* Skill Logo */
-  .skill-logo {
-    width: 70px;
-    height: 70px;
-  }
-
-  /* Animation */
-  .animate-card {
-    animation: fadeIn 1s ease-in-out;
-  }
-}
-
 /* Skills Section */
 .skills-section {
   background-color: #f7f5e7;
-  padding: 50px 0;
-  min-height: 100vh;
+  padding: 50px 20px;
+  min-height: 150vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .skills-title {
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 40px;
   text-transform: uppercase;
   color: #0e1113;
 }
 
-/* Skill Card */
+/* Skills Grid: 2 cards per row */
+.skills-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px; /* Space between rows and columns */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual Card */
 .skill-card {
-  margin-top: 50px;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 300px;
+  opacity: 0; /* Hidden initially */
+  transform: translateX(0);
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
-.skill-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+/* Slide-in from left for odd cards */
+.skill-card:nth-child(odd) {
+  animation-name: slideInFromLeft;
 }
 
-/* Skill Logo */
-.skill-logo {
-  height: 100px;
-  object-fit: contain;
-  margin: 10px auto;
+/* Slide-in from right for even cards */
+.skill-card:nth-child(even) {
+  animation-name: slideInFromRight;
 }
 
-/* Animation */
-.animate-card {
-  animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
+/* Slide-in Animations */
+@keyframes slideInFromLeft {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: translateX(-150%);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(150%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+/* Skill Logo */
+.skill-logo {
+  height: 120px;
+  width: 120px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+/* Skill Name */
+.skill-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Responsive Design */
+
+/* Small Devices (Max-width: 768px) */
+@media (max-width: 768px) {
+  .skills-wrapper {
+    grid-template-columns: 1fr; /* One card per row */
+    gap: 30px;
+  }
+
+  .skill-card {
+    width: 80%;
+    height: auto;
+  }
+
+  .skill-logo {
+    height: 100px;
+    width: 100px;
+  }
+
+  .skill-name {
+    font-size: 1.2rem;
   }
 }

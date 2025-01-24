@@ -11,7 +11,7 @@ function Home() {
           <br />
           Tarento Technologies Pvt Ltd
         </p>
-        <a href="/POOJA_JOSEPH_RESUME(6).pdf" download className="btn btn-primary">
+        <a href="/POOJA_JOSEPH_RESUME (6).pdf" download className="btn btn-primary">
           Download CV
         </a>
       </div>

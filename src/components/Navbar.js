@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
 function Navbar() {
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll("section"); // Select all sections
+      let currentSection = "";
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 70; // Adjust offset for fixed navbar height
+        const sectionHeight = section.offsetHeight;
+
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute("id");
+        }
+      });
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg custom-navbar bg-light fixed-top">
       <div className="container">
-        {/* Left icons section */}
-        <div className="navbar-brand icons">
+        {/* Branding / Icons Section */}
+        <div className="custom-icons navbar-brand">
           <a href="https://github.com/pooja682002" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-github"></i>
           </a>
@@ -18,27 +44,43 @@ function Navbar() {
           </a>
         </div>
 
-        {/* Right navigation section */}
-        <ul className="navbar-nav ms-auto">
-          <li className="nav-item">
-            <a className="nav-link" href="#home">Home</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#about">About</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#education">Education</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#skills">Skills</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#Projects">Projects</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#Contact">Contact</a>
-          </li>
-        </ul>
+        {/* Toggler for mobile view */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Navigation Links */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            {[
+              { id: "home", label: "Home" },
+              { id: "about", label: "About" },
+              { id: "education", label: "Education" },
+              { id: "skills", label: "Skills" },
+              { id: "projects", label: "Projects" },
+              { id: "contact", label: "Contact" },
+            ].map((item) => (
+              <li className="nav-item" key={item.id}>
+                <a
+                  className={`nav-link ${
+                    activeSection === item.id ? "active" : ""
+                  }`}
+                  href={`#${item.id}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </nav>
   );
