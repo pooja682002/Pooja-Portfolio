@@ -45,7 +45,7 @@ function ProjectDetails() {
       <section id="project-details" className="project-details-section">
         <div className="container">
           <h2 className="error-message">Project not found</h2>
-          <Button variant="secondary" onClick={() => navigate("/ #Projects")}>
+          <Button variant="secondary" onClick={() => navigate("/Projects")}>
             Back to Projects
           </Button>
         </div>
@@ -59,7 +59,7 @@ function ProjectDetails() {
         {/* Back Arrow */}
         <button
           className="back-arrow"
-          onClick={() => navigate("/#Projects")}
+          onClick={() => navigate("/Projects")}
           aria-label="Back to Projects"
         >
           <FaArrowLeft size={20} />
