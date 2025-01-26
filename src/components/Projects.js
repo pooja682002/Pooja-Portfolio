@@ -3,12 +3,11 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Projects.css";
 
-function Project() {
+function Projects() {
   return (
     <section id="projects" className="projects-section">
       <div className="text-center mb-5">
         <h2 className="section-title">My Projects</h2>
-        <p>Click on any project to know more about the details and technology used.</p>
       </div>
 
       <div className="projects-grid">
@@ -89,7 +88,7 @@ function Project() {
               <Card.Text>
                 An interactive and responsive online showing website for coconut shell products.
               </Card.Text>
-              <Link to="/projects/calculator">
+              <Link to="/projects/Thnega">
                 <Button  className="btn-custom">View Details</Button>
               </Link>
             </Card.Body>
@@ -100,4 +99,4 @@ function Project() {
   );
 }
 
-export default Project;
+export default Projects

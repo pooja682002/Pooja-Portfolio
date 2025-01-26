@@ -45,7 +45,17 @@
   transform: translateX(0);
   animation-duration: 1s;
   animation-fill-mode: forwards;
+  
+
 }
+/* Add hover effect to the skill cards */
+.skill-card:hover {
+  transform: translateY(-10px);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth animation */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Add a more pronounced shadow */
+  z-index: 10; /* Ensure the card appears on top */
+}
+
 
 /* Slide-in from left for odd cards */
 .skill-card:nth-child(odd) {

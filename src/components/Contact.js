@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { saveContact } from "../services/api"; // Import the API function
-import "./Contact.css";
+import "./Contact.css"; // Custom CSS for additional styling
+import "@fortawesome/fontawesome-free/css/all.min.css"; // Font Awesome CSS
 
 function Contact() {
   // State to store form data and response message

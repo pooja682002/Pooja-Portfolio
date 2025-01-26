@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&display=swap');
+
 /* Navbar fixed at top */
 .custom-navbar {
   position: fixed;
@@ -8,36 +10,32 @@
   background-color: #f8f9fa;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Body padding to prevent overlap */
-body {
-  padding-top: 70px;
-}
-
-/* Social Icons */
-.custom-icons {
   display: flex;
   align-items: center;
-  margin-left: -200px;
-  gap: 50px; /* Space between icons */
+  justify-content: space-between;
+  flex-wrap: wrap; /* Enable wrapping for smaller screens */
 }
 
-.custom-icons a {
+/* Branding Section (Name) */
+.custom-brand {
+  font-size: 1.8rem;
+  margin-left:-250px;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
   color: #333;
-  font-size: 1.5rem;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  white-space: nowrap;
+  margin-bottom: 10px; /* Adjust for mobile */
 }
 
-.custom-icons a:hover {
-  color: #95b8dd;
+.custom-brand:hover {
+  color: #1c627c !important;
 }
+
 /* Active Link Styling */
 .nav-link.active {
-  color: #7de2f0; /* Highlight color */
+  color: #7de2f0;
   font-weight: bold;
-  border-bottom: 2px solid #7de2f0; /* Optional underline */
+  border-bottom: 2px solid #cfdbdd;
   transition: color 0.3s, border-bottom 0.3s;
 }
 
@@ -45,10 +43,11 @@ body {
 .navbar-nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* Wrap navigation items for smaller screens */
 }
 
 .nav-item {
-  margin-left: 20px;
+  margin: 10px;
 }
 
 .nav-link {
@@ -64,22 +63,30 @@ body {
 
 /* Responsive Styles */
 
-/* Small Devices */
+/* Extra Small Devices */
 @media (max-width: 575.98px) {
-  .custom-icons {
-    flex-wrap: wrap; /* Wrap icons if they don't fit */
-    gap: 10px;
+  .custom-navbar {
+    flex-direction: column; /* Stack navbar items */
+    align-items: center;
+  }
+
+  .custom-brand {
+    text-align: center;
+    margin-bottom: 15px;
   }
 
   .nav-link {
-    font-size: 1rem;
-    text-align: center;
+    font-size: 0.9rem;
   }
 }
 
 /* Medium Devices */
 @media (min-width: 576px) and (max-width: 991.98px) {
-  .custom-icons {
-    gap: 15px;
+  .custom-brand {
+    font-size: 1.6rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
   }
 }

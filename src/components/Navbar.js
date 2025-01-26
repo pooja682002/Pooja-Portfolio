@@ -31,18 +31,8 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg custom-navbar bg-light fixed-top">
       <div className="container">
-        {/* Branding / Icons Section */}
-        <div className="custom-icons navbar-brand">
-          <a href="https://github.com/pooja682002" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-github"></i>
-          </a>
-          <a href="https://linkedin.com/in/pooja-joseph" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-linkedin"></i>
-          </a>
-          <a href="mailto:pooja.azhi@gmail.com">
-            <i className="fas fa-envelope"></i>
-          </a>
-        </div>
+        {/* Branding / Name Section */}
+        <div className="navbar-brand custom-brand">POOJA JOSEPH</div>
 
         {/* Toggler for mobile view */}
         <button
@@ -57,7 +47,7 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navigation Links */}
+        {/* Navigation Links and Icons */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             {[
@@ -80,6 +70,8 @@ function Navbar() {
               </li>
             ))}
           </ul>
+
+
         </div>
       </div>
     </nav>

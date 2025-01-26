@@ -7,13 +7,15 @@
   text-align: center;
   overflow: hidden;
   min-height: 80vh;
-  align-content: center;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Title */
 .about-title {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: bold;
   margin-bottom: 40px;
   color: #0e1d31;
@@ -26,7 +28,7 @@
   max-width: 800px;
   margin: 0 auto;
   animation: slideIn 1s ease-in-out;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .about-paragraph {
@@ -108,9 +110,10 @@
     transform: translateY(0) scale(1);
   }
 }
+
 /* Responsive Design */
 
-/* For Extra Small Devices (Phones, less than 576px) */
+/* Extra Small Devices (Phones, less than 576px) */
 @media (max-width: 575.98px) {
   .about-title {
     font-size: 2.5rem;
@@ -118,7 +121,7 @@
   }
 
   .about-content {
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 1rem;
   }
 
@@ -133,7 +136,7 @@
   }
 }
 
-/* For Small Devices (Tablets, 576px to 767px) */
+/* Small Devices (Tablets, 576px to 767px) */
 @media (min-width: 576px) and (max-width: 767.98px) {
   .about-title {
     font-size: 3rem;
@@ -141,7 +144,7 @@
   }
 
   .about-content {
-    margin-top: 40px;
+    margin-top: 30px;
     font-size: 1.1rem;
   }
 
@@ -156,7 +159,7 @@
   }
 }
 
-/* For Medium Devices (Desktops, 768px to 991px) */
+/* Medium Devices (Desktops, 768px to 991px) */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .about-title {
     font-size: 3.5rem;
@@ -164,7 +167,7 @@
   }
 
   .about-content {
-    margin-top: 45px;
+    margin-top: 40px;
     font-size: 1.15rem;
   }
 
@@ -179,7 +182,7 @@
   }
 }
 
-/* For Large Devices (Desktops, 992px and up) */
+/* Large Devices (Desktops, 992px and up) */
 @media (min-width: 992px) {
   .about-title {
     font-size: 4rem;
