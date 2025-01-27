@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
@@ -12,15 +12,27 @@ import Contact from "./components/Contact";
 import "./App.css";
 
 function App() {
+  const location = useLocation();
+
+  // Define paths where the Navbar should not be displayed
+  const hideNavbarRoutes = ["/projects/:projectId"];
+
+  // Check if the current path matches any excluded paths
+  const isNavbarHidden = hideNavbarRoutes.some((path) =>
+    new RegExp(path.replace(":projectId", "[^/]+")).test(location.pathname)
+  );
+
   return (
-    <Router>
+    <>
+      {/* Conditionally render the Navbar */}
+      {!isNavbarHidden && <Navbar />}
+
       <Routes>
-        
+        {/* Main page route */}
         <Route
           path="/"
           element={
             <>
-              <Navbar />
               <Home />
               <About />
               <Education />
@@ -31,20 +43,27 @@ function App() {
             </>
           }
         />
-        {/* Dynamic project details page */}
+        {/* Dynamic project details route */}
         <Route
           path="/projects/:projectId"
           element={
             <>
-              <Navbar />
               <ProjectDetails />
               <Footer />
             </>
           }
         />
       </Routes>
+    </>
+  );
+}
+
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
     </Router>
   );
 }
 
-export default App;
+export default AppWrapper;

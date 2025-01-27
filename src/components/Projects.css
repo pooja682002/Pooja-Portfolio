@@ -43,6 +43,7 @@
   }
   
   .card-body {
+    height: auto;
     padding: 30px;
     position: relative;
     background-color: #f7f5e7;

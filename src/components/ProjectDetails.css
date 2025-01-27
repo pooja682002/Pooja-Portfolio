@@ -1,6 +1,6 @@
 /* Project Details Section */
 .project-details-section {
-    padding: 80px 20px;
+    padding: 60px 20px;
     background-color: #f7f5e7; /* Sophisticated light background */
     min-height: 100vh;
     display: flex;
@@ -8,80 +8,79 @@
     justify-content: center;
   }
   
-  .project-details-card {
+  .project-details-container {
     display: flex;
-    flex-wrap: wrap;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    max-width: 900px;
-    overflow: hidden;
-  }
-  
-  .project-details-image {
-    flex: 1 1 300px;
+    flex-direction: row; /* Ensures the image is on the right side */
+    align-items: flex-start; /* Align content to the top */
+    gap: 30px; /* Space between content and image */
+    max-width: 1000px; /* Restrict overall width */
     width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
   }
-  
   
   .project-details-content {
-    flex: 2 1 400px;
-    padding: 40px;
+    flex: 2; /* Take up more space for content */
+    display: flex;
+    flex-direction: column; /* Stack heading and description vertically */
+    gap: 20px; /* Space between heading and description */
   }
   
   .project-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #2c3e50; /* Rich dark grey */
-    margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
   }
   
   .project-description {
-    font-size: 1.125rem;
-    color: #7f8c8d; /* Soft grey for description */
+    font-size: 1.2rem;
+    color: #7f8c8d; /* Softer grey for description */
     line-height: 1.8;
-    margin-bottom: 30px;
+    text-align: justify; /* Cleaner alignment */
   }
   
   .btn-download {
     display: inline-block;
-    padding: 12px 24px;
-    background-color: #7c715f; /* Warm amber for the button */
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 50px; /* Pill-shaped button */
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #516479;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Align button to the left */
   }
   
   .btn-download:hover {
-    background-color: #63594a; /* Darker amber */
-    transform: translateY(-5px); /* Slight lift on hover */
+    background-color: #e4cd9d;
+    text-decoration: underline;
+  }
+  
+  .project-details-image {
+    flex: 1; /* Ensure the image takes less space than the content */
+    max-width: 350px; /* Restrict image width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image fits nicely */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    align-self: flex-start; /* Align image to the top */
   }
   
   /* Media Queries */
   @media (max-width: 768px) {
-    .project-details-card {
-      flex-direction: column;
+    .project-details-container {
+      flex-direction: column; /* Stack content and image vertically */
+      align-items: center; /* Center the content */
     }
   
-    .project-details-image {
-      border-radius: 20px 20px 0 0; /* Adjust border for stacked layout */
-    }
-  
+   
     .project-details-content {
-      padding: 20px;
+      text-align: center; /* Center-align text for smaller screens */
+      gap: 15px;
     }
   
-    .project-title {
-      font-size: 1.75rem;
+    .btn-download {
+      align-self: center; /* Center the button */
     }
   }
   

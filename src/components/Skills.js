@@ -73,7 +73,12 @@ function Skills() {
       <div className="skills-wrapper">
         {skills.map((skill, index) => (
           <div key={index} className="skill-card">
-            <img src={skill.logo} alt={skill.name} className="skill-logo" />
+            <img
+              src={skill.logo}
+              alt={`${skill.name} logo`}
+              className="skill-logo"
+              aria-label={skill.name}
+            />
             <p className="skill-name">{skill.name}</p>
           </div>
         ))}
