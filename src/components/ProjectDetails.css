@@ -1,86 +1,90 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
 /* Project Details Section */
-.project-details-section {
-    padding: 60px 20px;
-    background-color: #f7f5e7; /* Sophisticated light background */
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.project-details {
+  padding: 80px 20px;
+  background-color: #f7f5e7; /* Match the background of the project grid */
+  color: #2d3436; /* Dark gray for readability */
+  min-height: 100vh; /* Ensure full viewport height */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Title Styling */
+.project-details h1 {
+  font-size: 3rem; /* Suitable size for a professional title */
+  font-weight: 700;
+  color: #2c3e50; /* Dark blue-gray for a professional look */
+  font-family: 'Merriweather', serif; /* Modern, elegant serif font */
+  letter-spacing: 0.5px; /* Slightly reduced spacing for clarity */
+  line-height: 1.2; /* Proper line height for better readability */
+  margin-bottom: 20px;
+  text-align: center; /* Center the title */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+  max-width: 800px; /* Limit width for a clean, professional layout */
+  word-wrap: break-word; /* Prevent overflow */
+  overflow: hidden; /* Hide excess text */
+  display: -webkit-box; /* For limiting to two lines */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Clamp to two lines */
+}
+
+/* Image Styling */
+.project-image {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 20px; /* Rounded corners */
+  border: 5px solid #e1e5ea; /* Subtle border for professionalism */
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  border-color: #2c3e50; /* Border changes color on hover */
+}
+
+/* Description Styling */
+.project-details p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #7f8c8d; /* Soft gray for readability */
+  max-width: 800px;
+  text-align: justify; /* Justify text for a professional look */
+  margin: 0 20px;
+}
+
+/* Loading and Error States */
+.loading,
+.error {
+  font-size: 1.5rem;
+  color: #e74c3c; /* Red for error messages */
+  margin-top: 50px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .project-details h1 {
+    font-size: 2.5rem; /* Adjust title size for smaller screens */
   }
-  
-  .project-details-container {
-    display: flex;
-    flex-direction: row; /* Ensures the image is on the right side */
-    align-items: flex-start; /* Align content to the top */
-    gap: 30px; /* Space between content and image */
-    max-width: 1000px; /* Restrict overall width */
-    width: 100%;
+
+  .project-details p {
+    font-size: 1rem; /* Adjust text size */
   }
-  
-  .project-details-content {
-    flex: 2; /* Take up more space for content */
-    display: flex;
-    flex-direction: column; /* Stack heading and description vertically */
-    gap: 20px; /* Space between heading and description */
+}
+
+@media (max-width: 576px) {
+  .project-details h1 {
+    font-size: 2rem; /* Further adjust title size for very small screens */
   }
-  
-  .project-title {
-    font-size: 2.5rem;
-    color: #2c3e50; /* Rich dark grey */
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 1.5px;
+
+  .project-details p {
+    font-size: 0.9rem; /* Smaller text for mobile devices */
   }
-  
-  .project-description {
-    font-size: 1.2rem;
-    color: #7f8c8d; /* Softer grey for description */
-    line-height: 1.8;
-    text-align: justify; /* Cleaner alignment */
-  }
-  
-  .btn-download {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #ffffff;
-    background-color: #516479;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    align-self: flex-start; /* Align button to the left */
-  }
-  
-  .btn-download:hover {
-    background-color: #e4cd9d;
-    text-decoration: underline;
-  }
-  
-  .project-details-image {
-    flex: 1; /* Ensure the image takes less space than the content */
-    max-width: 350px; /* Restrict image width */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensures the image fits nicely */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    align-self: flex-start; /* Align image to the top */
-  }
-  
-  /* Media Queries */
-  @media (max-width: 768px) {
-    .project-details-container {
-      flex-direction: column; /* Stack content and image vertically */
-      align-items: center; /* Center the content */
-    }
-  
-   
-    .project-details-content {
-      text-align: center; /* Center-align text for smaller screens */
-      gap: 15px;
-    }
-  
-    .btn-download {
-      align-self: center; /* Center the button */
-    }
-  }
-  
+}

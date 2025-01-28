@@ -19,14 +19,16 @@
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
-    gap: 40px; /* Subtle space between cards */
-    max-width: 1200px;
+    gap: 60px; /* Subtle space between cards */
+    max-width: 1100px;
     background-color: #f7f5e7;
     margin: 0 auto; /* Center the grid */
   }
   
+  
   .project-card {
-    
+    height: auto;
+    width: auto;
     background-color: #f7f5e7;
     border-radius: 20px; /* Rounded corners for a clean look */
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Soft deep shadow for cards */
@@ -43,7 +45,7 @@
   }
   
   .card-body {
-    height: auto;
+    height: 220px;
     padding: 30px;
     position: relative;
     background-color: #f7f5e7;

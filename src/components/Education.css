@@ -46,11 +46,15 @@
 
 .education-card .icon {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  
 }
 
 .education-card .icon img {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
+  
 }
 
 .education-card h3 {

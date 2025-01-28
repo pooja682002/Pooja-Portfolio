@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap; /* Enable wrapping for smaller screens */
+  flex-wrap: wrap; 
 }
 
 /* Branding Section (Name) */
@@ -43,7 +43,7 @@
 .navbar-nav {
   display: flex;
   align-items: center;
-  flex-wrap: wrap; /* Wrap navigation items for smaller screens */
+  flex-wrap: wrap; 
 }
 
 .nav-item {
@@ -66,7 +66,7 @@
 /* Extra Small Devices */
 @media (max-width: 575.98px) {
   .custom-navbar {
-    flex-direction: column; /* Stack navbar items */
+    flex-direction: column; 
     align-items: center;
   }
 
