@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 
 /* Navbar fixed at top */
 .custom-navbar {
@@ -16,7 +18,7 @@
   flex-wrap: wrap; 
 }
 
-/* Branding Section (Name) */
+
 .custom-brand {
   font-size: 1.8rem;
   margin-left:-250px;
@@ -24,14 +26,13 @@
   font-weight: bold;
   color: #333;
   white-space: nowrap;
-  /* Adjust for mobile */
+  
 }
 
 .custom-brand:hover {
   color: #1c627c !important;
 }
 
-/* Active Link Styling */
 .nav-link.active {
   color: #7de2f0;
   font-weight: bold;

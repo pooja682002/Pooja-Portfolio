@@ -1,12 +1,10 @@
-/* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
 
-/* Project Details Section */
 .project-details {
   padding: 80px 20px;
-  background-color: #f7f5e7; /* Match the background of the project grid */
-  color: #2d3436; /* Dark gray for readability */
-  min-height: 100vh; /* Ensure full viewport height */
+  background-color: #f7f5e7;
+  color: #2d3436;
+  min-height: 100vh;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -14,77 +12,69 @@
   gap: 30px;
 }
 
-/* Title Styling */
 .project-details h1 {
-  font-size: 3rem; /* Suitable size for a professional title */
+  font-size: 3rem;
   font-weight: 700;
-  color: #2c3e50; /* Dark blue-gray for a professional look */
-  font-family: 'Merriweather', serif; /* Modern, elegant serif font */
-  letter-spacing: 0.5px; /* Slightly reduced spacing for clarity */
-  line-height: 1.2; /* Proper line height for better readability */
+  color: #2c3e50;
+  font-family: 'Roboto', serif;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
   margin-bottom: 20px;
-  text-align: center; /* Center the title */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
-  max-width: 800px; /* Limit width for a clean, professional layout */
-  word-wrap: break-word; /* Prevent overflow */
-  overflow: hidden; /* Hide excess text */
-  display: -webkit-box; /* For limiting to two lines */
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  max-width: 800px;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* Clamp to two lines */
+  -webkit-line-clamp: 2;
 }
 
-/* Image Styling */
 .project-image {
   width: 100%;
   max-width: 800px;
   height: auto;
-  border-radius: 20px; /* Rounded corners */
-  border: 5px solid #e1e5ea; /* Subtle border for professionalism */
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border-radius: 20px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .project-image:hover {
-  transform: scale(1.05); /* Slight zoom on hover */
-  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-  border-color: #2c3e50; /* Border changes color on hover */
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Description Styling */
 .project-details p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #7f8c8d; /* Soft gray for readability */
+  color: #7f8c8d;
   max-width: 800px;
-  text-align: justify; /* Justify text for a professional look */
+  text-align: justify;
   margin: 0 20px;
 }
 
-/* Loading and Error States */
 .loading,
 .error {
   font-size: 1.5rem;
-  color: #e74c3c; /* Red for error messages */
+  color: #e74c3c;
   margin-top: 50px;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
   .project-details h1 {
-    font-size: 2.5rem; /* Adjust title size for smaller screens */
+    font-size: 2.5rem;
   }
 
   .project-details p {
-    font-size: 1rem; /* Adjust text size */
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 576px) {
   .project-details h1 {
-    font-size: 2rem; /* Further adjust title size for very small screens */
+    font-size: 2rem;
   }
 
   .project-details p {
-    font-size: 0.9rem; /* Smaller text for mobile devices */
+    font-size: 0.9rem;
   }
 }

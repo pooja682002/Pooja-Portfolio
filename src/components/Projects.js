@@ -1,39 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./Projects.css";
 
 function Projects() {
-  const projects = [
-    {
-      id: "63cd1cff-295d-431d-b552-60303976f042",
-      title: "Deep Learning based Floating Debris Detection",
-      description:
-        "A deep learning model using YOLOv3 for floating debris detection. Developed under the guidance of IIT, Palakkad.",
-      image: "/ML_IMG.jpg",
-    },
-    {
-      id: "3c669798-99cc-408d-b6b3-71bfe678f340",
-      title: "Grievance Management System",
-      description:
-        "A full-stack application for grievance management using React.js, Spring Boot, and PostgreSQL.",
-      image: "/GMPIC.png",
-    },
-    {
-      id: "caec6e1f-ab62-4874-8402-03eba8832c93",
-      title: "Her-day: Telegram Bot",
-      description:
-        "A menstrual tracker bot built using Python, Git, and GitHub with automatic alert notifications.",
-      image: "/HERDAY.png",
-    },
-    {
-      id: "2b4e8a65-fb5f-41f7-bdc9-387bc0625ff4",
-      title: "Thenga-Online website using HTML, CSS, and JavaScript",
-      description:
-        "An interactive and responsive online showing website for coconut shell products.",
-      image: "/THENGA.png",
-    },
-  ];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/projects")
+      .then((response) => {
+        setProjects(response.data); // Extract projects from API response
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching projects:", err);
+        setError("Failed to fetch projects.");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <section id="projects" className="projects-section">
@@ -47,13 +37,12 @@ function Projects() {
             <Card className="card-hover">
               <Card.Img
                 variant="top"
-                src={project.image}
+                src={`data:image/png;base64,${project.imageBase64}`} // Convert Base64 to Image
                 alt={project.title}
                 className="project-image"
               />
               <Card.Body>
                 <Card.Title>{project.title}</Card.Title>
-                <Card.Text>{project.description}</Card.Text>
                 <Link to={`/projects/${project.id}`}>
                   <Button className="btn-custom">View Details</Button>
                 </Link>
