@@ -1,0 +1,132 @@
+.skills-container {
+  padding: 50px;
+  background-color: #f9f9f9; 
+  width: 1600px;
+  min-height: 600px;
+  margin: 0 auto; 
+
+}
+.skills-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 550px;
+  color: #333;
+  font-weight: bold;
+   
+}
+
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.skills-table th, .skills-table td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: 1.2rem;
+}
+
+.skills-table th {
+  background-color: #34495e;
+  color: white;
+  font-weight: bold;
+}
+
+.skill-logo {
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover; 
+}
+
+.submit-button {
+  padding: 12px 25px;
+  margin: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #34495e;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+.add-button:hover, .edit-button:hover, .delete-button:hover, .update-button:hover {
+  background-color: white; 
+}
+
+.add-container, .edit-container {
+  margin-top: 30px;
+  background-color: #ffffff; 
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 60px;
+  margin: 20px auto; /* Center the form */
+}
+
+.add-container h3, .edit-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #d63c3c;
+  font-weight: bold;
+}
+
+.add-container input, .edit-container input {
+  margin: 12px 0;
+  padding: 12px;
+  width: 70%;
+  max-width: 1500px; /* Limiting the max width for input fields */
+  border-radius: 5px;
+  border: 1px solid #ada9a9;
+  font-size: 1rem;
+}
+
+.update-button {
+  background-color: white; 
+}
+
+.update-button:hover {
+  background-color: white; 
+}
+
+.add-button {
+  background-color: white; 
+  background: #34495e; /* Blue background */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: white;
+}
+
+.edit-button,.delete-button {
+  padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  background-color: white; 
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  transform: scale(0.98); 
+}
