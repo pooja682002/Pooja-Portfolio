@@ -83,6 +83,7 @@ const Navbar = () => {
               { id: "education", label: "Education" },
               { id: "skills", label: "Skills" },
               { id: "projects", label: "Projects" },
+              { id: "login", label: "Login" },
               { id: "contact", label: "Contact" },
             ].map((item) => (
               <li className="nav-item" key={item.id}>
