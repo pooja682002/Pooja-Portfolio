@@ -71,7 +71,6 @@ const Login = ({ setAuthenticated }) => {
       </div>
     </div>
   );
-  
 };
 
 export default Login;

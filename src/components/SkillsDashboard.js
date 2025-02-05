@@ -8,6 +8,11 @@ function SkillsDashboard() {
   const [newSkillName, setNewSkillName] = useState("");
   const [newSkillLogo, setNewSkillLogo] = useState(null);
  
+  const handleEdit = (skill) => {
+    setEditingSkill(skill);
+    setNewSkillName(skill.name); // Prepopulate the form with the current skill name
+    setNewSkillLogo(null); // Reset new logo selection
+  };
   
   // Fetch skills from backend
   useEffect(() => {
@@ -32,13 +37,7 @@ function SkillsDashboard() {
     }
   };
 
-  // Handle edit skill
-  const handleEdit = (skill) => {
-    setEditingSkill(skill);
-    setNewSkillName(skill.name); // Prepopulate the form with the current skill's name
-    setNewSkillLogo(null); // Reset new logo selection
-  };
-
+ 
   // Handle update skill
   const handleUpdate = async () => {
     if (!newSkillName) return; // Ensure the name is provided
@@ -146,6 +145,16 @@ function SkillsDashboard() {
           {editingSkill ? "Update Skill" : "Add Skill"}
         </button>
       </div>
+      {/* Show current logo if editing */}
+{editingSkill && !newSkillLogo && (
+  <div className="current-logo">
+    <img
+      src={`data:image/png;base64,${editingSkill.logoBase64}`} 
+      alt="Current Logo"
+      className="current-logo-img"
+    />
+  </div>
+)}
 
       {/* Skills Table */}
       <table className="skills-table">

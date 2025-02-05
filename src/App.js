@@ -13,38 +13,18 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 
-
 import "./App.css";
 
 const App = () => {
-  const [isAuthenticated, setAuthenticated] = useState(localStorage.getItem("authFlag") === "1");
-  const [skills, setSkills] = useState([]);
-  const [education, setEducation] = useState([]);
-  const [projects, setProjects] = useState([]);
+  const [isAuthenticated, setAuthenticated] = useState(false);
 
+  // Check if user is authenticated from localStorage on initial load
   useEffect(() => {
-    if (isAuthenticated) {
-      loadData();
+    const authFlag = localStorage.getItem("authFlag");
+    if (authFlag === "1") {
+      setAuthenticated(true);
     }
-  }, [isAuthenticated]); // Watch for auth changes
-
-  const loadData = async () => {
-    try {
-      const skillsData = await fetch("http://localhost:8080/api/skills");
-      const skillsJson = await skillsData.json();
-      setSkills(skillsJson);
-      
-      const educationData = await fetch("http://localhost:8080/api/education");
-      const educationJson = await educationData.json();
-      setEducation(educationJson);
-
-      const projectsData = await fetch("http://localhost:8080/api/projects");
-      const projectsJson = await projectsData.json();
-      setProjects(projectsJson);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  }, []);
 
   return (
     <Router>
@@ -57,29 +37,34 @@ const App = () => {
               <Home />
               <About />
               <Education />
-              <Skill/>
+              <Skill />
               <Projects />
               <Contact />
             </>
           }
         />
-
+        
         <Route path="/projects/:id" element={<ProjectDetails />} />
         <Route path="/login" element={<Login setAuthenticated={setAuthenticated} />} />
-
+        
+        {/* Protecting dashboard routes */}
         <Route
-          path="/dashboard/*"
-          element={
-            isAuthenticated ? (
-              <Dashboard setAuthenticated={setAuthenticated} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
+          path="/dashboard"
+          element={isAuthenticated ? <Dashboard setAuthenticated={setAuthenticated} /> : <Navigate to="/login" />}
         />
-        <Route path="/skills" element={isAuthenticated ? <SkillsDashboard /> : <Navigate to="/login" />} />
+        <Route
+          path="/dashboard/skills"
+          element={isAuthenticated ? <SkillsDashboard /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/dashboard/education"
+          element={isAuthenticated ? <Education /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/dashboard/projects"
+          element={isAuthenticated ? <Projects /> : <Navigate to="/login" />}
+        />
       </Routes>
-      
     </Router>
   );
 };
