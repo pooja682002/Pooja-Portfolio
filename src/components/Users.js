@@ -106,13 +106,13 @@ const Users = () => {
                   <td>{user.username}</td>
                   <td>
                     <button
-                      className="edit-btn"
+                      className="edit-button"
                       onClick={() => setNewUser({ id: user.id, username: user.username, password: "" })}
                     >
                        Edit
                     </button>
                     <button
-                      className="delete-btn"
+                      className="delete-button"
                       onClick={() => handleDeleteUser(user.id)}
                     >
                        Delete

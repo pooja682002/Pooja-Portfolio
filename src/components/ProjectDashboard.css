@@ -3,7 +3,7 @@
     background-color: #f9f9f9;
     max-width: 1600px;
     min-height: 600px;
-    margin: 0 auto;
+    margin-left: 230px;
   }
   
   .project-dashboard h2 {
@@ -24,8 +24,19 @@
     padding: 30px;
     border-radius: 8px;
     margin-bottom: 30px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+   /* Shadow for depth */
   }
+  .image-preview {
+    margin-top: 10px;
+  }
+  
+  .project-image-preview {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
   
   .add-project-form input,
   .add-project-form textarea {
@@ -56,13 +67,14 @@
   }
   
   .add-project-form button:hover {
-    background-color: #34495e; /* Darker blue for hover */
+    background-color: #aeb4b9; /* Darker blue for hover */
   }
   
   .project-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 30px;
+   
   }
   
   .project-table th, .project-table td {
@@ -109,14 +121,14 @@
     color: black;
     border-radius: 5px;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+    
   }
   .add-button:hover, .edit-button:hover, .delete-button:hover {
-    background-color: #34495e; /* Darker blue for hover */
+    background-color: #757779; /* Darker blue for hover */
   }
   button{
     background-color: #e6e8eb;
-    color: rgb(17, 16, 16);
+    
   }
   button:focus {
     outline: none;
@@ -124,5 +136,26 @@
   
   button:active {
     transform: scale(0.98); /* Slightly shrink the button on click for better feedback */
+  }
+  
+.edit-button,.delete-button {
+    padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    background-color: white; 
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    transform: scale(0.98); 
   }
   

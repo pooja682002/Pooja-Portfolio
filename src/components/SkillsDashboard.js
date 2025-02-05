@@ -7,7 +7,8 @@ function SkillsDashboard() {
   const [editingSkill, setEditingSkill] = useState(null);
   const [newSkillName, setNewSkillName] = useState("");
   const [newSkillLogo, setNewSkillLogo] = useState(null);
-
+ 
+  
   // Fetch skills from backend
   useEffect(() => {
     const fetchSkills = async () => {
@@ -25,55 +26,67 @@ function SkillsDashboard() {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/api/skills/${id}`);
-      setSkills(skills.filter(skill => skill.id !== id));
+      setSkills(skills.filter((skill) => skill.id !== id));
     } catch (error) {
       console.error("Error deleting skill:", error);
     }
   };
 
- 
   // Handle edit skill
   const handleEdit = (skill) => {
     setEditingSkill(skill);
     setNewSkillName(skill.name); // Prepopulate the form with the current skill's name
-    setNewSkillLogo(skill.logo); // Retain existing logo when editing
+    setNewSkillLogo(null); // Reset new logo selection
   };
 
+  // Handle update skill
   const handleUpdate = async () => {
     if (!newSkillName) return; // Ensure the name is provided
-  
+
     const formData = new FormData();
     formData.append("name", newSkillName);
-    
-    // If logo is updated, append it to the formData, otherwise it will not be included
+
+    // If a new logo is uploaded, append it; otherwise, keep the old logo
     if (newSkillLogo) {
       formData.append("logo", newSkillLogo);
     }
-  
+
     try {
       // PUT request to update the skill
-      await axios.put(`http://localhost:8080/api/skills/${editingSkill.id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Ensure correct content type for form data
-        },
-      });
-  
-      // Update the skills state after successful update
-      setSkills(skills.map(skill => 
-        skill.id === editingSkill.id ? 
-        { ...skill, name: newSkillName, logo: newSkillLogo instanceof File ? URL.createObjectURL(newSkillLogo) : skill.logo } : 
-        skill
-      ));
-  
+      const response = await axios.put(
+        `http://localhost:8080/api/skills/${editingSkill.id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Ensure correct content type
+          },
+        }
+      );
+
+      const updatedSkill = response.data.response;
+
+      // Update the skills state after a successful update
+      setSkills((prevSkills) =>
+        prevSkills.map((skill) =>
+          skill.id === updatedSkill.id
+            ? {
+                ...skill,
+                name: updatedSkill.name,
+                logo: newSkillLogo
+                  ? URL.createObjectURL(newSkillLogo)
+                  : skill.logo, // Update logo only if a new one was uploaded
+              }
+            : skill
+        )
+      );
+
       setEditingSkill(null); // Reset editing state
       setNewSkillName(""); // Clear name after update
-      setNewSkillLogo(null); // Clear logo after update if needed
+      setNewSkillLogo(null); // Clear logo input
     } catch (error) {
       console.error("Error updating skill:", error);
     }
   };
-
-  
 
   // Handle add new skill
   const handleAddSkill = async () => {
@@ -84,7 +97,10 @@ function SkillsDashboard() {
     formData.append("logo", newSkillLogo);
 
     try {
-      const response = await axios.post("http://localhost:8080/api/skills", formData);
+      const response = await axios.post(
+        "http://localhost:8080/api/skills",
+        formData
+      );
       setSkills([...skills, response.data.response]);
       setNewSkillName(""); // Reset the name
       setNewSkillLogo(null); // Reset the logo
@@ -99,31 +115,34 @@ function SkillsDashboard() {
 
       {/* Add/Edit Form */}
       <div className="add-project-form">
-        <input 
-          type="text" 
-          value={newSkillName} 
-          onChange={(e) => setNewSkillName(e.target.value)} 
-          placeholder="Skill Name" 
+        <input
+          type="text"
+          value={newSkillName}
+          onChange={(e) => setNewSkillName(e.target.value)}
+          placeholder="Skill Name"
         />
-        
+      
         {/* Show current logo if editing */}
         {editingSkill && editingSkill.logo && !newSkillLogo && (
           <div className="current-logo">
-            <img 
-              src={`data:image/png;base64,${editingSkill.logo}`} 
-              alt="Current Logo" 
+            <img
+              src={`data:image/png;base64,${editingSkill.logo}`}
+              alt="Current Logo"
               className="current-logo-img"
             />
           </div>
         )}
-        
-        <input 
-          type="file" 
-          onChange={(e) => setNewSkillLogo(e.target.files[0])} 
-          placeholder="Skill Logo" 
+
+        <input
+          type="file"
+          onChange={(e) => setNewSkillLogo(e.target.files[0])}
+          placeholder="Skill Logo"
         />
-        
-        <button onClick={editingSkill ? handleUpdate : handleAddSkill} className="submit-button">
+
+        <button
+          onClick={editingSkill ? handleUpdate : handleAddSkill}
+          className="submit-button"
+        >
           {editingSkill ? "Update Skill" : "Add Skill"}
         </button>
       </div>
@@ -149,8 +168,18 @@ function SkillsDashboard() {
               </td>
               <td>{skill.name}</td>
               <td>
-                <button onClick={() => handleEdit(skill)} className="edit-button">Edit</button>
-                <button onClick={() => handleDelete(skill.id)} className="delete-button">Delete</button>
+                <button
+                  onClick={() => handleEdit(skill)}
+                  className="edit-button"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(skill.id)}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

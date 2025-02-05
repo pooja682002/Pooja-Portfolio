@@ -6,6 +6,7 @@ function ProjectDashboard() {
   const [projects, setProjects] = useState([]);
   const [newProject, setNewProject] = useState({ title: "", description: "", image: null });
   const [editingProject, setEditingProject] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null); // Preview image
 
   // Fetch projects
   useEffect(() => {
@@ -22,7 +23,15 @@ function ProjectDashboard() {
 
   // Handle file input
   const handleFileChange = (e) => {
-    setNewProject({ ...newProject, image: e.target.files[0] });
+    const file = e.target.files[0];
+    setNewProject({ ...newProject, image: file });
+
+    // Show image preview
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setPreviewImage(reader.result);
+      reader.readAsDataURL(file);
+    }
   };
 
   // Add a new project
@@ -37,6 +46,7 @@ function ProjectDashboard() {
     try {
       await axios.post("http://localhost:8080/api/projects/upload", formData);
       setNewProject({ title: "", description: "", image: null });
+      setPreviewImage(null);
       window.location.reload(); // Refresh the list
     } catch (err) {
       console.error("Error adding project:", err);
@@ -57,6 +67,7 @@ function ProjectDashboard() {
   const handleEditProject = (project) => {
     setEditingProject(project);
     setNewProject({ title: project.title, description: project.description, image: null });
+    setPreviewImage(`data:image/png;base64,${project.imageBase64}`); // Show existing image
   };
 
   // Update Project
@@ -71,6 +82,7 @@ function ProjectDashboard() {
     try {
       await axios.put(`http://localhost:8080/api/projects/${editingProject.id}`, formData);
       setEditingProject(null);
+      setPreviewImage(null);
       window.location.reload();
     } catch (err) {
       console.error("Error updating project:", err);
@@ -96,7 +108,25 @@ function ProjectDashboard() {
           value={newProject.description}
           onChange={handleChange}
         />
+        
+        {/* Show existing image when editing */}
+        {editingProject && previewImage && (
+          <div className="image-preview">
+            <p>Current Image:</p>
+            <img src={previewImage} alt="Current project" className="project-image-preview" />
+          </div>
+        )}
+
         <input type="file" onChange={handleFileChange} />
+        
+        {/* Show new preview when a new image is uploaded */}
+        {previewImage && newProject.image && (
+          <div className="image-preview">
+            <p>New Image Preview:</p>
+            <img src={previewImage} alt="New project" className="project-image-preview" />
+          </div>
+        )}
+
         <button onClick={editingProject ? handleUpdateProject : handleAddProject}>
           {editingProject ? "Update Project" : "Add Project"}
         </button>
@@ -121,8 +151,8 @@ function ProjectDashboard() {
               <td>{project.title}</td>
               <td>{project.description}</td>
               <td>
-                <button onClick={() => handleEditProject(project)}>Edit</button>
-                <button onClick={() => handleDeleteProject(project.id)}>Delete</button>
+                <button onClick={() => handleEditProject(project)} className="edit-button">Edit</button>
+                <button onClick={() => handleDeleteProject(project.id)} className="delete-button">Delete</button>
               </td>
             </tr>
           ))}

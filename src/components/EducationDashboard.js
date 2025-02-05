@@ -11,15 +11,16 @@ function EducationDashboard() {
   const [newLogo, setNewLogo] = useState(null);
 
   // Fetch education records from backend
+  const fetchEducation = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/education");
+      setEducationRecords(response.data.response);
+    } catch (error) {
+      console.error("Error fetching education records:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchEducation = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/api/education");
-        setEducationRecords(response.data.response);
-      } catch (error) {
-        console.error("Error fetching education records:", error);
-      }
-    };
     fetchEducation();
   }, []);
 
@@ -33,15 +34,16 @@ function EducationDashboard() {
     }
   };
 
-  // Handle edit education record
+  // Handle edit
   const handleEdit = (education) => {
     setEditingEducation(education);
     setNewDegree(education.degree);
     setNewInstitution(education.institution);
     setNewYear(education.year);
-    setNewLogo(null);
+    setNewLogo(null); // Reset new image selection
   };
 
+  // Handle update education record
   const handleUpdate = async () => {
     if (!newDegree || !newInstitution || !newYear) return; // Ensure required fields are provided
 
@@ -49,27 +51,22 @@ function EducationDashboard() {
     formData.append("degree", newDegree);
     formData.append("institution", newInstitution);
     formData.append("year", newYear);
-
     if (newLogo) {
       formData.append("logo", newLogo);
     }
 
     try {
-      // PUT request to update the education record
-      await axios.put(`http://localhost:8080/api/education/${editingEducation.id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Ensure correct content type for form data
-        },
-      });
+      await axios.put(`http://localhost:8080/api/education/${editingEducation.id}`, formData);
+      
+      // Re-fetch the updated education list
+      fetchEducation();
 
-      // Update the education records state after successful update
-      setEducationRecords(educationRecords.map(education =>
-        education.id === editingEducation.id ?
-        { ...education, degree: newDegree, institution: newInstitution, year: newYear, logo: newLogo ? URL.createObjectURL(newLogo) : education.logo } :
-        education
-      ));
-
-      setEditingEducation(null); // Reset editing state
+      // Reset state after successful update
+      setEditingEducation(null);
+      setNewDegree("");
+      setNewInstitution("");
+      setNewYear("");
+      setNewLogo(null);
     } catch (error) {
       console.error("Error updating education record:", error);
     }
@@ -86,9 +83,13 @@ function EducationDashboard() {
     formData.append("logo", newLogo);
 
     try {
-      const response = await axios.post("http://localhost:8080/api/education", formData);
-      setEducationRecords([...educationRecords, response.data.response]);
-      setNewDegree(""); // Reset the fields
+      await axios.post("http://localhost:8080/api/education", formData);
+
+      // Re-fetch the updated education list
+      fetchEducation();
+
+      // Reset fields
+      setNewDegree("");
       setNewInstitution("");
       setNewYear("");
       setNewLogo(null);
@@ -121,48 +122,71 @@ function EducationDashboard() {
           onChange={(e) => setNewYear(e.target.value)} 
           placeholder="Year" 
         />
+
+        {/* Existing Logo Preview */}
+        {editingEducation && editingEducation.logo && (
+          <img
+            src={`data:image/png;base64,${editingEducation.logo}`}
+            alt="Current Logo"
+            className="education-logo-preview"
+          />
+        )}
+
+        {/* New Image Upload */}
         <input 
           type="file" 
           onChange={(e) => setNewLogo(e.target.files[0])} 
           placeholder="Institution Logo" 
         />
+
+        {/* New Image Preview */}
+        {newLogo && (
+          <img
+            src={URL.createObjectURL(newLogo)}
+            alt="New Preview"
+            className="education-logo-preview"
+          />
+        )}
+
         <button onClick={editingEducation ? handleUpdate : handleAddEducation} className="submit-button">
           {editingEducation ? "Update Education" : "Add Education"}
         </button>
       </div>
 
       {/* Education Table */}
-      <table className="education-table">
-        <thead>
-          <tr>
-            <th>Logo</th>
-            <th>Degree</th>
-            <th>Institution</th>
-            <th>Year</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {educationRecords.map((education) => (
-            <tr key={education.id}>
-              <td>
-                <img
-                  src={`data:image/png;base64,${education.logo}`}
-                  alt={education.degree}
-                  className="education-logo"
-                />
-              </td>
-              <td>{education.degree}</td>
-              <td>{education.institution}</td>
-              <td>{education.year}</td>
-              <td>
-                <button onClick={() => handleEdit(education)} className="edit-button">Edit</button>
-                <button onClick={() => handleDelete(education.id)} className="delete-button"> Delete</button>
-              </td>
+      <div className="table-wrapper">
+        <table className="education-table">
+          <thead>
+            <tr>
+              <th>Logo</th>
+              <th>Degree</th>
+              <th>Institution</th>
+              <th>Year</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {educationRecords.map((education) => (
+              <tr key={education.id}>
+                <td>
+                  <img
+                    src={`data:image/png;base64,${education.logo}`}
+                    alt={education.degree}
+                    className="education-logo"
+                  />
+                </td>
+                <td>{education.degree}</td>
+                <td>{education.institution}</td>
+                <td>{education.year}</td>
+                <td>
+                  <button onClick={() => handleEdit(education)} className="edit-button">Edit</button>
+                  <button onClick={() => handleDelete(education.id)} className="delete-button"> Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

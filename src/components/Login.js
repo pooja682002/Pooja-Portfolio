@@ -37,34 +37,41 @@ const Login = ({ setAuthenticated }) => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Admin Login</h2>
+        <h2 className="login-title">Admin Login</h2>
         {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="login-form">
           <div className="input-group">
-            <label>Username</label>
+            <label htmlFor="username">Username</label>
             <input
               type="text"
+              id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
+              placeholder="Enter your username"
+              className="input-field"
             />
           </div>
-
+  
           <div className="input-group">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              placeholder="Enter your password"
+              className="input-field"
             />
           </div>
-
+  
           <button type="submit" className="login-button">Login</button>
         </form>
       </div>
     </div>
   );
+  
 };
 
 export default Login;

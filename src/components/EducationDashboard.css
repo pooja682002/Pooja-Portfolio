@@ -36,6 +36,10 @@
     border: 1px solid #ada9a9;
     font-size: 1rem;
   }
+  .education-logo {
+    height: 30px;
+    width: 30px;
+  }
   
   .submit-button {
     padding: 12px 25px;
@@ -50,13 +54,16 @@
   }
   
   .submit-button:hover {
-    background-color: #545455;
+    background-color: #aeb4b9;
   }
   
   .education-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 40px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
   
   .education-table th, .education-table td {
@@ -87,13 +94,22 @@
     font-size: 14px;
     transition: background-color 0.3s ease;
   }
+  .education-logo-preview {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+  }
   
   .edit-button:hover {
-    background-color: #ffc107;
+    background-color: #aeb4b9;
   }
   
   .delete-button:hover {
-    background-color: #ffc107;
+    background-color: #aeb4b9;
   }
   
   button:focus {
@@ -102,5 +118,85 @@
   
   button:active {
     transform: scale(0.98);
+  }
+  
+  /* Media Queries for responsiveness */
+  
+  /* iPad Air (768px - 1024px) */
+  @media (max-width: 1024px) {
+    .education-container {
+      padding: 40px;
+    }
+  
+    .education-container h2 {
+      font-size: 2rem;
+      max-width: 400px;
+    }
+  
+    .add-education-form input {
+      width: 90%;
+    }
+  
+    .education-table th, .education-table td {
+      font-size: 1rem;
+      padding: 15px;
+    }
+  
+    .submit-button {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+  
+  /* Galaxy S20 Ultra (1440px wide screen) */
+  @media (max-width: 1440px) {
+    .education-container {
+      padding: 40px;
+    }
+  
+    .education-container h2 {
+      font-size: 2.2rem;
+      max-width: 450px;
+    }
+  
+    .add-education-form input {
+      width: 80%;
+    }
+  
+    .education-table th, .education-table td {
+      font-size: 1rem;
+      padding: 18px;
+    }
+  
+    .submit-button {
+      padding: 10px 22px;
+      font-size: 15px;
+    }
+  }
+  
+  /* Small screen (less than 768px) */
+  @media (max-width: 768px) {
+    .education-container {
+      padding: 20px;
+    }
+  
+    .education-container h2 {
+      font-size: 1.8rem;
+      max-width: 350px;
+    }
+  
+    .add-education-form input {
+      width: 100%;
+    }
+  
+    .education-table th, .education-table td {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    .submit-button {
+      padding: 8px 18px;
+      font-size: 12px;
+    }
   }
   
