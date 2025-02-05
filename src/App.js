@@ -6,8 +6,11 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Education from "./components/Education";
 import Skill from "./components/Skill";
+import Users from "./components/Users";
 import SkillsDashboard from "./components/SkillsDashboard";
+import EducationDashboard from "./components/EducationDashboard";
 import Projects from "./components/Projects";
+import ProjectDashboard from "./components/ProjectDashboard";
 import ProjectDetails from "./components/ProjectDetails";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
@@ -16,15 +19,19 @@ import Dashboard from "./components/Dashboard";
 import "./App.css";
 
 const App = () => {
-  const [isAuthenticated, setAuthenticated] = useState(false);
+  // ✅ Read authentication state from localStorage on first render
+  const [isAuthenticated, setAuthenticated] = useState(
+    localStorage.getItem("authFlag") === "1"
+  );
 
-  // Check if user is authenticated from localStorage on initial load
+  // ✅ Update localStorage whenever authentication state changes
   useEffect(() => {
-    const authFlag = localStorage.getItem("authFlag");
-    if (authFlag === "1") {
-      setAuthenticated(true);
+    if (isAuthenticated) {
+      localStorage.setItem("authFlag", "1");
+    } else {
+      localStorage.removeItem("authFlag");
     }
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <Router>
@@ -46,23 +53,11 @@ const App = () => {
         
         <Route path="/projects/:id" element={<ProjectDetails />} />
         <Route path="/login" element={<Login setAuthenticated={setAuthenticated} />} />
-        
-        {/* Protecting dashboard routes */}
+
+        {/* ✅ Use Nested Routes for Dashboard */}
         <Route
-          path="/dashboard"
+          path="/dashboard/*"
           element={isAuthenticated ? <Dashboard setAuthenticated={setAuthenticated} /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/dashboard/skills"
-          element={isAuthenticated ? <SkillsDashboard /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/dashboard/education"
-          element={isAuthenticated ? <Education /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/dashboard/projects"
-          element={isAuthenticated ? <Projects /> : <Navigate to="/login" />}
         />
       </Routes>
     </Router>

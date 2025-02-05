@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Users from "./Users";
-import Skills from "./SkillsDashboard";
-import Projects from "./ProjectDashboard";
-import Educations from "./EducationDashboard";
 import "./dashboard.css";
+import SkillsDashboard from "./SkillsDashboard";
+import EducationDashboard from "./EducationDashboard";
+import ProjectDashboard from "./ProjectDashboard";
 
 function Dashboard({ setAuthenticated }) {
   const navigate = useNavigate();
@@ -64,9 +64,9 @@ function Dashboard({ setAuthenticated }) {
       <div className="main-content">
         <Routes>
           <Route path="users" element={<Users />} />
-          <Route path="skills" element={<Skills />} />
-          <Route path="education" element={<Educations />} />
-          <Route path="projects" element={<Projects />} />
+          <Route path="skills" element={<SkillsDashboard />} />
+          <Route path="education" element={<EducationDashboard />} />
+          <Route path="projects" element={<ProjectDashboard />} />
 
           {/* Default Route - Profile with Cards inside a single big card */}
           <Route
@@ -81,7 +81,7 @@ function Dashboard({ setAuthenticated }) {
                       className="profile-img"
                     />
                     <h2 className="profile-name">POOJA JOSEPH</h2>
-                    <p className="profile-description">Welcome to my personal dashboard!</p>
+                    <p className="profile-description">Welcome to your personal dashboard!</p>
                   </div>
 
                   {/* Dashboard Cards */}
@@ -89,25 +89,25 @@ function Dashboard({ setAuthenticated }) {
                     <div className="card" onClick={() => navigate("/dashboard/users")}>
                       <span className="material-icons card-icon">people</span>
                       <h3>Manage Users</h3>
-                      
+                      <p>View and manage user details</p>
                     </div>
 
                     <div className="card" onClick={() => navigate("/dashboard/education")}>
                       <span className="material-icons card-icon">school</span>
                       <h3>Manage Education</h3>
-                      
+                      <p>Update your education details</p>
                     </div>
 
                     <div className="card" onClick={() => navigate("/dashboard/skills")}>
                       <span className="material-icons card-icon">build</span>
                       <h3>Manage Skills</h3>
-                      
+                      <p>View and manage skills</p>
                     </div>
 
                     <div className="card" onClick={() => navigate("/dashboard/projects")}>
                       <span className="material-icons card-icon">code</span>
                       <h3>Manage Projects</h3>
-                      
+                      <p>View and manage project details</p>
                     </div>
                   </div>
                 </div>
