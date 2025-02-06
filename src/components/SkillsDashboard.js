@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Modal, Button, Alert } from "react-bootstrap"; // Importing Bootstrap components for modal
 import "./SkillsDashboard.css"; // Import CSS for styling
 
 function SkillsDashboard() {
   const [skills, setSkills] = useState([]);
-  const [editingSkill, setEditingSkill] = useState(null);
+  const [editingSkill, setEditingSkill] = useState(null);  // Initially null for "Add New"
   const [newSkillName, setNewSkillName] = useState("");
   const [newSkillLogo, setNewSkillLogo] = useState(null);
- 
+  const [showModal, setShowModal] = useState(false); // Modal visibility state
+  const [successMessage, setSuccessMessage] = useState(""); // Success message state
+  const [errorMessage, setErrorMessage] = useState(""); // Error message state
+
+  // Handle Edit - Populates the modal with the existing values
   const handleEdit = (skill) => {
     setEditingSkill(skill);
-    setNewSkillName(skill.name); // Prepopulate the form with the current skill name
+    setNewSkillName(skill.name); // Prepopulate with existing name
     setNewSkillLogo(null); // Reset new logo selection
+    setSuccessMessage(""); // Clear any previous success message
+    setErrorMessage(""); // Clear any previous error message
+    setShowModal(true); // Open modal for editing
   };
-  
+
+  // Handle Add New Skill - Resets state to show empty form
+  const handleAddNewSkill = () => {
+    setEditingSkill(null); // No skill being edited
+    setNewSkillName(""); // Reset name
+    setNewSkillLogo(null); // Reset logo
+    setSuccessMessage(""); // Clear any previous success message
+    setErrorMessage(""); // Clear any previous error message
+    setShowModal(true); // Open modal
+  };
+
   // Fetch skills from backend
   useEffect(() => {
     const fetchSkills = async () => {
@@ -37,10 +55,12 @@ function SkillsDashboard() {
     }
   };
 
- 
   // Handle update skill
   const handleUpdate = async () => {
-    if (!newSkillName) return; // Ensure the name is provided
+    if (!newSkillName) {
+      setErrorMessage("Please provide a skill name.");
+      return; // Ensure name is provided
+    }
 
     const formData = new FormData();
     formData.append("name", newSkillName);
@@ -51,7 +71,6 @@ function SkillsDashboard() {
     }
 
     try {
-      // PUT request to update the skill
       const response = await axios.put(
         `http://localhost:8080/api/skills/${editingSkill.id}`,
         formData,
@@ -73,23 +92,28 @@ function SkillsDashboard() {
                 name: updatedSkill.name,
                 logo: newSkillLogo
                   ? URL.createObjectURL(newSkillLogo)
-                  : skill.logo, // Update logo only if a new one was uploaded
+                  : skill.logo, // Update logo only if a new one is uploaded
               }
             : skill
         )
       );
 
+      setSuccessMessage("Skill updated successfully!");
       setEditingSkill(null); // Reset editing state
       setNewSkillName(""); // Clear name after update
       setNewSkillLogo(null); // Clear logo input
     } catch (error) {
       console.error("Error updating skill:", error);
+      setErrorMessage("Error updating the skill.");
     }
   };
 
   // Handle add new skill
   const handleAddSkill = async () => {
-    if (!newSkillName || !newSkillLogo) return; // Ensure name and logo are provided
+    if (!newSkillName || !newSkillLogo) {
+      setErrorMessage("Please provide both skill name and logo.");
+      return; // Ensure name and logo are provided
+    }
 
     const formData = new FormData();
     formData.append("name", newSkillName);
@@ -101,10 +125,13 @@ function SkillsDashboard() {
         formData
       );
       setSkills([...skills, response.data.response]);
+      setSuccessMessage("Skill added successfully!");
       setNewSkillName(""); // Reset the name
       setNewSkillLogo(null); // Reset the logo
+      setShowModal(false); // Close modal
     } catch (error) {
       console.error("Error adding skill:", error);
+      setErrorMessage("Error adding the skill.");
     }
   };
 
@@ -112,49 +139,10 @@ function SkillsDashboard() {
     <div className="skills-container">
       <h2>Skills Records</h2>
 
-      {/* Add/Edit Form */}
-      <div className="add-project-form">
-        <input
-          type="text"
-          value={newSkillName}
-          onChange={(e) => setNewSkillName(e.target.value)}
-          placeholder="Skill Name"
-        />
-      
-        {/* Show current logo if editing */}
-        {editingSkill && editingSkill.logo && !newSkillLogo && (
-          <div className="current-logo">
-            <img
-              src={`data:image/png;base64,${editingSkill.logo}`}
-              alt="Current Logo"
-              className="current-logo-img"
-            />
-          </div>
-        )}
-
-        <input
-          type="file"
-          onChange={(e) => setNewSkillLogo(e.target.files[0])}
-          placeholder="Skill Logo"
-        />
-
-        <button
-          onClick={editingSkill ? handleUpdate : handleAddSkill}
-          className="submit-button"
-        >
-          {editingSkill ? "Update Skill" : "Add Skill"}
-        </button>
-      </div>
-      {/* Show current logo if editing */}
-{editingSkill && !newSkillLogo && (
-  <div className="current-logo">
-    <img
-      src={`data:image/png;base64,${editingSkill.logoBase64}`} 
-      alt="Current Logo"
-      className="current-logo-img"
-    />
-  </div>
-)}
+      {/* Button to open modal for Add New Skill */}
+      <Button variant="primary" onClick={handleAddNewSkill} className="add-new-button">
+        Add New Skill
+      </Button>
 
       {/* Skills Table */}
       <table className="skills-table">
@@ -194,6 +182,54 @@ function SkillsDashboard() {
           ))}
         </tbody>
       </table>
+
+      {/* Modal for Add/Edit Skill */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{editingSkill ? "Edit Skill" : "Add Skill"}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* Success/Error message inside the modal */}
+          {successMessage && <Alert variant="success">{successMessage}</Alert>}
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+
+          <input
+            type="text"
+            value={newSkillName}
+            onChange={(e) => setNewSkillName(e.target.value)}
+            placeholder="Skill Name"
+            className="form-control"
+          />
+          <input
+            type="file"
+            onChange={(e) => setNewSkillLogo(e.target.files[0])}
+            placeholder="Skill Logo"
+            className="form-control"
+          />
+
+          {/* Display current logo if editing */}
+          {editingSkill && editingSkill.logoBase64 && !newSkillLogo && (
+            <div className="current-logo">
+              <img
+                src={`data:image/png;base64,${editingSkill.logoBase64}`}
+                alt="Current Logo"
+                className="current-logo-img"
+              />
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={editingSkill ? handleUpdate : handleAddSkill}
+          >
+            {editingSkill ? "Update Skill" : "Add Skill"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

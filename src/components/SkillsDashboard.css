@@ -140,3 +140,118 @@ button:focus {
 button:active {
   transform: scale(0.98); 
 }
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 40px; /* Increased padding */
+  border-radius: 10px;
+  width: 500px; /* Increased width */
+  text-align: center;
+}
+
+.error {
+  color: rgb(233, 208, 208);
+  margin-bottom: 10px;
+}
+
+.close-button {
+  background-color: #a8c0d3;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: #95be96;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-button {
+  background-color: #008cba;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.skill-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.logo-preview-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+/* Add the Add New Skill button at the top */
+.add-button {
+  background-color: #008cba;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px; /* Space below the button */
+}
+
+/* Modal styles */
+.modal-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 500px;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.submit-button, .close-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-button {
+  background-color: #f44336;
+}
+
+.logo-preview-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.current-logo-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}

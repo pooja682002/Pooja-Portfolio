@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
 import "./EducationDashboard.css"; // Import CSS for styling
 
 function EducationDashboard() {
@@ -9,6 +10,8 @@ function EducationDashboard() {
   const [newInstitution, setNewInstitution] = useState("");
   const [newYear, setNewYear] = useState("");
   const [newLogo, setNewLogo] = useState(null);
+  const [responseMessage, setResponseMessage] = useState("");
+  const [showModal, setShowModal] = useState(false); // For modal visibility
 
   // Fetch education records from backend
   const fetchEducation = async () => {
@@ -17,6 +20,7 @@ function EducationDashboard() {
       setEducationRecords(response.data.response);
     } catch (error) {
       console.error("Error fetching education records:", error);
+      setResponseMessage("Error fetching education records.");
     }
   };
 
@@ -29,8 +33,10 @@ function EducationDashboard() {
     try {
       await axios.delete(`http://localhost:8080/api/education/${id}`);
       setEducationRecords(educationRecords.filter(record => record.id !== id));
+      setResponseMessage("Education record deleted successfully!");
     } catch (error) {
       console.error("Error deleting education record:", error);
+      setResponseMessage("Error deleting education record.");
     }
   };
 
@@ -41,11 +47,16 @@ function EducationDashboard() {
     setNewInstitution(education.institution);
     setNewYear(education.year);
     setNewLogo(null); // Reset new image selection
+    setResponseMessage(""); // Clear any previous response message
+    setShowModal(true); // Show modal for editing
   };
 
   // Handle update education record
   const handleUpdate = async () => {
-    if (!newDegree || !newInstitution || !newYear) return; // Ensure required fields are provided
+    if (!newDegree || !newInstitution || !newYear) {
+      setResponseMessage("Please fill out all fields.");
+      return; // Ensure required fields are provided
+    }
 
     const formData = new FormData();
     formData.append("degree", newDegree);
@@ -67,14 +78,19 @@ function EducationDashboard() {
       setNewInstitution("");
       setNewYear("");
       setNewLogo(null);
+      setResponseMessage("Education record updated successfully!");
     } catch (error) {
+      setResponseMessage("Error updating education record.");
       console.error("Error updating education record:", error);
     }
   };
 
   // Handle add new education record
   const handleAddEducation = async () => {
-    if (!newDegree || !newInstitution || !newYear || !newLogo) return; // Ensure all required fields are provided
+    if (!newDegree || !newInstitution || !newYear || !newLogo) {
+      setResponseMessage("Please fill out all fields.");
+      return; // Ensure all required fields are provided
+    }
 
     const formData = new FormData();
     formData.append("degree", newDegree);
@@ -93,65 +109,32 @@ function EducationDashboard() {
       setNewInstitution("");
       setNewYear("");
       setNewLogo(null);
+      setResponseMessage("Education record added successfully!");
     } catch (error) {
+      setResponseMessage("Error adding education record.");
       console.error("Error adding education record:", error);
     }
+  };
+
+  // Show Add New Modal
+  const handleAddNewClick = () => {
+    setEditingEducation(null);
+    setNewDegree("");
+    setNewInstitution("");
+    setNewYear("");
+    setNewLogo(null);
+    setResponseMessage(""); // Clear any previous response message
+    setShowModal(true); // Show modal for adding new record
   };
 
   return (
     <div className="education-container">
       <h2>Education Records</h2>
 
-      {/* Add/Edit Form */}
-      <div className="add-education-form">
-        <input 
-          type="text" 
-          value={newDegree} 
-          onChange={(e) => setNewDegree(e.target.value)} 
-          placeholder="Degree" 
-        />
-        <input 
-          type="text" 
-          value={newInstitution} 
-          onChange={(e) => setNewInstitution(e.target.value)} 
-          placeholder="Institution" 
-        />
-        <input 
-          type="text" 
-          value={newYear} 
-          onChange={(e) => setNewYear(e.target.value)} 
-          placeholder="Year" 
-        />
-
-        {/* Existing Logo Preview */}
-        {editingEducation && editingEducation.logo && (
-          <img
-            src={`data:image/png;base64,${editingEducation.logo}`}
-            alt="Current Logo"
-            className="education-logo-preview"
-          />
-        )}
-
-        {/* New Image Upload */}
-        <input 
-          type="file" 
-          onChange={(e) => setNewLogo(e.target.files[0])} 
-          placeholder="Institution Logo" 
-        />
-
-        {/* New Image Preview */}
-        {newLogo && (
-          <img
-            src={URL.createObjectURL(newLogo)}
-            alt="New Preview"
-            className="education-logo-preview"
-          />
-        )}
-
-        <button onClick={editingEducation ? handleUpdate : handleAddEducation} className="submit-button">
-          {editingEducation ? "Update Education" : "Add Education"}
-        </button>
-      </div>
+      {/* Button to trigger Add New Modal */}
+      <button className="add-new-button" onClick={handleAddNewClick}>
+        Add New Education
+      </button>
 
       {/* Education Table */}
       <div className="table-wrapper">
@@ -180,13 +163,90 @@ function EducationDashboard() {
                 <td>{education.year}</td>
                 <td>
                   <button onClick={() => handleEdit(education)} className="edit-button">Edit</button>
-                  <button onClick={() => handleDelete(education.id)} className="delete-button"> Delete</button>
+                  <button onClick={() => handleDelete(education.id)} className="delete-button">Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {/* Modal for Add/Edit Education */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{editingEducation ? "Edit Education" : "Add Education"}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input
+            type="text"
+            value={newDegree}
+            onChange={(e) => setNewDegree(e.target.value)}
+            placeholder="Degree"
+            className="form-control"
+          />
+          <input
+            type="text"
+            value={newInstitution}
+            onChange={(e) => setNewInstitution(e.target.value)}
+            placeholder="Institution"
+            className="form-control"
+          />
+          <input
+            type="text"
+            value={newYear}
+            onChange={(e) => setNewYear(e.target.value)}
+            placeholder="Year"
+            className="form-control"
+          />
+
+          {/* Show existing logo when editing */}
+          {editingEducation && editingEducation.logo && (
+            <div className="logo-preview">
+              <p>Current Logo:</p>
+              <img
+                src={`data:image/png;base64,${editingEducation.logo}`}
+                alt="Current Logo"
+                className="education-logo-preview"
+              />
+            </div>
+          )}
+
+          {/* File input for new logo */}
+          <input
+            type="file"
+            onChange={(e) => setNewLogo(e.target.files[0])}
+            className="form-control"
+          />
+
+          {/* Show new logo preview */}
+          {newLogo && (
+            <div className="logo-preview">
+              <p>New Logo Preview:</p>
+              <img
+                src={URL.createObjectURL(newLogo)}
+                alt="New Logo"
+                className="education-logo-preview"
+              />
+            </div>
+          )}
+
+          {/* Display Response Message */}
+          {responseMessage && (
+            <div className="response-message">{responseMessage}</div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={editingEducation ? handleUpdate : handleAddEducation}
+          >
+            {editingEducation ? "Update Education" : "Add Education"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
