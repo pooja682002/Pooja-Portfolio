@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 
-/* Navbar fixed at top */
+
 .custom-navbar {
   position: fixed;
   top: 0;
@@ -40,7 +40,7 @@
   transition: color 0.3s, border-bottom 0.3s;
 }
 
-/* Navigation Links */
+
 .navbar-nav {
   display: flex;
   align-items: center;
@@ -62,9 +62,7 @@
   color: #7de2f0;
 }
 
-/* Responsive Styles */
 
-/* Extra Small Devices */
 @media (max-width: 575.98px) {
   .custom-navbar {
     flex-direction: column; 
@@ -82,7 +80,6 @@
   }
 }
 
-/* Medium Devices */
 @media (min-width: 375px) and (max-width: 991.98px) {
   .custom-brand {
     margin-left: 50px;

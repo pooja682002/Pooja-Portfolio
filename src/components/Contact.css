@@ -1,4 +1,4 @@
-/* Social Icons Section */
+
 .social-links {
   margin-top: 20px;
   display: flex;
@@ -8,17 +8,17 @@
 
 .social-links .social-icon {
   font-size: 2rem;
-  color: #2c3e50; /* Dark color for visibility */
+  color: #2c3e50; 
   transition: transform 0.3s, color 0.3s;
   text-decoration: none;
 }
 
 .social-links .social-icon:hover {
-  color: #1a252f; /* Slightly darker color on hover */
-  transform: scale(1.2); /* Slight zoom effect */
+  color: #1a252f;
+  transform: scale(1.2); 
 }
 
-/* Contact Section */
+
 .contact-section {
   background: linear-gradient(135deg, #eaf8ff, #ffffff);
   padding: 60px 20px;
@@ -29,7 +29,7 @@
   justify-content: center;
 }
 
-/* Contact Form */
+
 .contact-form {
   text-align: left;
   background: #ffffff;
@@ -61,7 +61,6 @@
   transform: scale(1.05);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .contact-form {
     padding: 20px 30px;

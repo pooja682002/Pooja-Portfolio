@@ -1,5 +1,5 @@
 .projects-section {
-  padding: 80px 20px; /* General padding for the page */
+  padding: 80px 20px;
   background-color: #f7f5e7;
   min-height: 80vh;
   text-align: center;
@@ -87,7 +87,7 @@
   border-radius: 50px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-top: auto; /* Push the button to the bottom */
+  margin-top: auto; 
   transition: background-color 0.3s ease, transform 0.2s ease;
   text-align: center;
   border: none !important;
@@ -97,12 +97,12 @@
   background-color: #63594a !important;
 }
 
-/* Media Queries */
+
 @media (max-width: 1024px) {
   .projects-grid {
-      grid-template-columns: 1fr 1fr; /* Two columns for tablets */
+      grid-template-columns: 1fr 1fr; 
       gap: 30px;
-      padding: 0 15px; /* Reduce padding slightly */
+      padding: 0 15px; 
   }
 
   .section-title {

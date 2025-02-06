@@ -9,32 +9,31 @@ function SkillsDashboard() {
   const [newSkillName, setNewSkillName] = useState("");
   const [newSkillLogo, setNewSkillLogo] = useState(null);
   const [showModal, setShowModal] = useState(false); 
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // For delete confirmation modal
-  const [skillToDelete, setSkillToDelete] = useState(null); // Store skill ID for deletion
+  const [showDeleteModal, setShowDeleteModal] = useState(false); 
+  const [skillToDelete, setSkillToDelete] = useState(null); 
   const [successMessage, setSuccessMessage] = useState(""); 
   const [errorMessage, setErrorMessage] = useState(""); 
   
-  // Handle Edit - Populates the modal with the existing values
+  
   const handleEdit = (skill) => {
     setEditingSkill(skill);
-    setNewSkillName(skill.name); // Prepopulate with existing name
-    setNewSkillLogo(null); // Reset new logo selection (can edit only name if no new logo selected)
-    setSuccessMessage(""); // Clear any previous success message
-    setErrorMessage(""); // Clear any previous error message
-    setShowModal(true); // Open modal for editing
+    setNewSkillName(skill.name); 
+    setNewSkillLogo(); 
+    setSuccessMessage(""); 
+    setErrorMessage(""); 
+    setShowModal(true); 
   };
 
-  // Handle Add New Skill - Resets state to show empty form
   const handleAddNewSkill = () => {
-    setEditingSkill(null); // No skill being edited
-    setNewSkillName(""); // Reset name
-    setNewSkillLogo(null); // Reset logo
-    setSuccessMessage(""); // Clear any previous success message
-    setErrorMessage(""); // Clear any previous error message
-    setShowModal(true); // Open modal
+    setEditingSkill(null); 
+    setNewSkillName(""); 
+    setNewSkillLogo(null); 
+    setSuccessMessage(""); 
+    setErrorMessage(""); 
+    setShowModal(true); 
   };
 
-  // Fetch skills from backend
+
   useEffect(() => {
     const fetchSkills = async () => {
       try {
@@ -47,28 +46,28 @@ function SkillsDashboard() {
     fetchSkills();
   }, []);
 
-  // Handle delete skill
+ 
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8080/api/skills/${skillToDelete}`);
       setSkills(skills.filter((skill) => skill.id !== skillToDelete));
-      setShowDeleteModal(false); // Close delete confirmation modal
+      setShowDeleteModal(false); 
     } catch (error) {
       console.error("Error deleting skill:", error);
     }
   };
 
-  // Handle update skill
+  
   const handleUpdate = async () => {
     if (!newSkillName) {
       setErrorMessage("Please provide a skill name.");
-      return; // Ensure name is provided
+      return; 
     }
 
     const formData = new FormData();
     formData.append("name", newSkillName);
 
-    // If a new logo is uploaded, append it; otherwise, keep the old logo
+    
     if (newSkillLogo) {
       formData.append("logo", newSkillLogo);
     }
@@ -79,14 +78,13 @@ function SkillsDashboard() {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Ensure correct content type
+            "Content-Type": "multipart/form-data", 
           },
         }
       );
 
       const updatedSkill = response.data.response;
 
-      // Update the skills state after a successful update
       setSkills((prevSkills) =>
         prevSkills.map((skill) =>
           skill.id === updatedSkill.id
@@ -95,27 +93,27 @@ function SkillsDashboard() {
                 name: updatedSkill.name,
                 logo: newSkillLogo
                   ? URL.createObjectURL(newSkillLogo)
-                  : skill.logo, // Update logo only if a new one is uploaded
+                  : skill.logo, 
               }
             : skill
         )
       );
 
       setSuccessMessage("Skill updated successfully!");
-      setEditingSkill(null); // Reset editing state
-      setNewSkillName(""); // Clear name after update
-      setNewSkillLogo(null); // Clear logo input
+      setEditingSkill(null); 
+      setNewSkillName(""); 
+      setNewSkillLogo(null);
     } catch (error) {
       console.error("Error updating skill:", error);
       setErrorMessage("Error updating the skill.");
     }
   };
 
-  // Handle add new skill
+ 
   const handleAddSkill = async () => {
     if (!newSkillName || !newSkillLogo) {
       setErrorMessage("Please provide both skill name and logo.");
-      return; // Ensure name and logo are provided
+      return; 
     }
 
     const formData = new FormData();
@@ -129,9 +127,9 @@ function SkillsDashboard() {
       );
       setSkills([...skills, response.data.response]);
       setSuccessMessage("Skill added successfully!");
-      setNewSkillName(""); // Reset the name
-      setNewSkillLogo(null); // Reset the logo
-      setShowModal(false); // Close modal
+      setNewSkillName(""); 
+      setNewSkillLogo(null); 
+      setShowModal(false); 
     } catch (error) {
       console.error("Error adding skill:", error);
       setErrorMessage("Error adding the skill.");
@@ -142,12 +140,12 @@ function SkillsDashboard() {
     <div className="skills-container">
       <h2>Skills Records</h2>
 
-      {/* Button to open modal for Add New Skill */}
+
       <Button variant="primary" onClick={handleAddNewSkill} className="add-new-button">
         Add New Skill
       </Button>
 
-      {/* Skills Table */}
+     
       <table className="skills-table">
         <thead>
           <tr>
@@ -186,13 +184,13 @@ function SkillsDashboard() {
         </tbody>
       </table>
 
-      {/* Modal for Add/Edit Skill */}
+     
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>{editingSkill ? "Edit Skill" : "Add Skill"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Success/Error message inside the modal */}
+          
           {successMessage && <Alert variant="success">{successMessage}</Alert>}
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
 
@@ -210,7 +208,7 @@ function SkillsDashboard() {
             className="form-control"
           />
 
-          {/* Display current logo if editing */}
+         
           {editingSkill && editingSkill.logoBase64 && !newSkillLogo && (
             <div className="current-logo">
               <img
@@ -234,7 +232,6 @@ function SkillsDashboard() {
         </Modal.Footer>
       </Modal>
 
-      {/* Confirmation Modal for Delete */}
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Are you sure?</Modal.Title>

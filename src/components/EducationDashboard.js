@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
-import "./EducationDashboard.css"; // Import CSS for styling
+import "./EducationDashboard.css"; 
 
 function EducationDashboard() {
   const [educationRecords, setEducationRecords] = useState([]);
@@ -11,11 +11,11 @@ function EducationDashboard() {
   const [newYear, setNewYear] = useState("");
   const [newLogo, setNewLogo] = useState(null);
   const [responseMessage, setResponseMessage] = useState("");
-  const [showModal, setShowModal] = useState(false); // For modal visibility
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // For delete confirmation modal
-  const [idToDelete, setIdToDelete] = useState(null); // ID of the education record to delete
+  const [showModal, setShowModal] = useState(false); 
+  const [showDeleteModal, setShowDeleteModal] = useState(false); 
+  const [idToDelete, setIdToDelete] = useState(null); 
 
-  // Fetch education records from backend
+ 
   const fetchEducation = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/education");
@@ -30,42 +30,42 @@ function EducationDashboard() {
     fetchEducation();
   }, []);
 
-  // Handle delete education record
+
   const handleDelete = (id) => {
-    setIdToDelete(id); // Store ID to delete
-    setShowDeleteModal(true); // Show delete confirmation modal
+    setIdToDelete(id); 
+    setShowDeleteModal(true);
   };
 
-  // Confirm deletion
+ 
   const confirmDelete = async () => {
     try {
       await axios.delete(`http://localhost:8080/api/education/${idToDelete}`);
       setEducationRecords(educationRecords.filter(record => record.id !== idToDelete));
       setResponseMessage("Education record deleted successfully!");
-      setShowDeleteModal(false); // Close delete modal
+      setShowDeleteModal(false); 
     } catch (error) {
       console.error("Error deleting education record:", error);
       setResponseMessage("Error deleting education record.");
-      setShowDeleteModal(false); // Close delete modal
+      setShowDeleteModal(false); 
     }
   };
 
-  // Handle edit
+
   const handleEdit = (education) => {
     setEditingEducation(education);
     setNewDegree(education.degree);
     setNewInstitution(education.institution);
     setNewYear(education.year);
-    setNewLogo(null); // Reset new image selection
-    setResponseMessage(""); // Clear any previous response message
-    setShowModal(true); // Show modal for editing
+    setNewLogo(null); 
+    setResponseMessage(""); 
+    setShowModal(true); 
   };
 
-  // Handle update education record
+  
   const handleUpdate = async () => {
     if (!newDegree || !newInstitution || !newYear) {
       setResponseMessage("Please fill out all fields.");
-      return; // Ensure required fields are provided
+      return; 
     }
 
     const formData = new FormData();
@@ -79,10 +79,10 @@ function EducationDashboard() {
     try {
       await axios.put(`http://localhost:8080/api/education/${editingEducation.id}`, formData);
       
-      // Re-fetch the updated education list
+      
       fetchEducation();
 
-      // Reset state after successful update
+      
       setEditingEducation(null);
       setNewDegree("");
       setNewInstitution("");
@@ -95,11 +95,11 @@ function EducationDashboard() {
     }
   };
 
-  // Handle add new education record
+  
   const handleAddEducation = async () => {
     if (!newDegree || !newInstitution || !newYear || !newLogo) {
       setResponseMessage("Please fill out all fields.");
-      return; // Ensure all required fields are provided
+      return; 
     }
 
     const formData = new FormData();
@@ -111,10 +111,10 @@ function EducationDashboard() {
     try {
       await axios.post("http://localhost:8080/api/education", formData);
 
-      // Re-fetch the updated education list
+      
       fetchEducation();
 
-      // Reset fields
+     
       setNewDegree("");
       setNewInstitution("");
       setNewYear("");
@@ -126,27 +126,25 @@ function EducationDashboard() {
     }
   };
 
-  // Show Add New Modal
   const handleAddNewClick = () => {
     setEditingEducation(null);
     setNewDegree("");
     setNewInstitution("");
     setNewYear("");
     setNewLogo(null);
-    setResponseMessage(""); // Clear any previous response message
-    setShowModal(true); // Show modal for adding new record
+    setResponseMessage(""); 
+    setShowModal(true); 
   };
 
   return (
     <div className="education-container">
       <h2>Education Records</h2>
 
-      {/* Button to trigger Add New Modal */}
+      
       <button className="add-new-button" onClick={handleAddNewClick}>
         Add New Education
       </button>
 
-      {/* Education Table */}
       <div className="table-wrapper">
         <table className="education-table">
           <thead>
@@ -181,7 +179,7 @@ function EducationDashboard() {
         </table>
       </div>
 
-      {/* Modal for Add/Edit Education */}
+     
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>{editingEducation ? "Edit Education" : "Add Education"}</Modal.Title>
@@ -209,7 +207,7 @@ function EducationDashboard() {
             className="form-control"
           />
 
-          {/* Show existing logo when editing */}
+          
           {editingEducation && editingEducation.logo && (
             <div className="logo-preview">
               <p>Current Logo:</p>
@@ -221,14 +219,14 @@ function EducationDashboard() {
             </div>
           )}
 
-          {/* File input for new logo */}
+         
           <input
             type="file"
             onChange={(e) => setNewLogo(e.target.files[0])}
             className="form-control"
           />
 
-          {/* Show new logo preview */}
+
           {newLogo && (
             <div className="logo-preview">
               <p>New Logo Preview:</p>
@@ -240,7 +238,7 @@ function EducationDashboard() {
             </div>
           )}
 
-          {/* Display Response Message */}
+         
           {responseMessage && (
             <div className="response-message">{responseMessage}</div>
           )}
@@ -258,7 +256,7 @@ function EducationDashboard() {
         </Modal.Footer>
       </Modal>
 
-      {/* Delete Confirmation Modal */}
+    
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Delete Education Record</Modal.Title>

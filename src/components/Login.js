@@ -20,13 +20,13 @@ const Login = ({ setAuthenticated }) => {
       });
 
       if (response.data.statusCode === 200) {
-        // Store authentication flag in localStorage
+        
         localStorage.setItem("authFlag", "1");
 
-        // Update authentication state
+     
         setAuthenticated(true);
 
-        // Navigate to the dashboard
+        
         navigate("/dashboard");
       }
     } catch (error) {

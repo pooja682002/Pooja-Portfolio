@@ -7,7 +7,7 @@ function Skills() {
   useEffect(() => {
     fetch("http://localhost:8080/api/skills")
       .then((response) => response.json())
-      .then((data) => setSkills(data.response)) // Extract the 'response' field from API response
+      .then((data) => setSkills(data.response)) 
       .catch((error) => console.error("Error fetching skills:", error));
   }, []);
 

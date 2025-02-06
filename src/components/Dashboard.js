@@ -7,7 +7,7 @@ import EducationDashboard from "./EducationDashboard";
 import ProjectDashboard from "./ProjectDashboard";
 
 function Dashboard({ setAuthenticated }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false); // State for sidebar toggle
+  const [sidebarOpen, setSidebarOpen] = useState(false); 
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,12 +22,12 @@ function Dashboard({ setAuthenticated }) {
 
   return (
     <div className="dashboard-container">
-      {/* Hamburger Menu */}
+     
       <div className="hamburger" onClick={toggleSidebar}>
         <span className="material-icons">menu</span>
       </div>
 
-      {/* Sidebar */}
+    
       <div className={`sidebar ${sidebarOpen ? "active" : ""}`}>
         <ul>
           <li>
@@ -74,8 +74,9 @@ function Dashboard({ setAuthenticated }) {
       <div className="main-content">
         <Routes>
           <Route path="users" element={<Users />} />
-          <Route path="skills" element={<SkillsDashboard />} />
+          
           <Route path="education" element={<EducationDashboard />} />
+          <Route path="skills" element={<SkillsDashboard />} />
           <Route path="projects" element={<ProjectDashboard />} />
 
           {/* Default Route - Profile with Cards inside a single big card */}

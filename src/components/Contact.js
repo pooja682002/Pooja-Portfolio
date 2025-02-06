@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { saveContact } from "../services/api"; // Import the API function
-import "./Contact.css"; // Custom CSS for additional styling
-import "@fortawesome/fontawesome-free/css/all.min.css"; // Font Awesome CSS
+import { saveContact } from "../services/api"; 
+import "./Contact.css";
+import "@fortawesome/fontawesome-free/css/all.min.css"; 
 
 function Contact() {
-  // State to store form data and response message
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,20 +13,19 @@ function Contact() {
   });
   const [responseMessage, setResponseMessage] = useState("");
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await saveContact(formData); // Call the API function
+      const response = await saveContact(formData); 
       console.log("Contact saved successfully:", response.data);
       setResponseMessage("Your message has been sent successfully!");
-      setFormData({ name: "", email: "", message: "" }); // Reset the form
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error saving contact:", error);
       setResponseMessage("Failed to send your message. Please try again.");
@@ -36,13 +35,13 @@ function Contact() {
   return (
     <section id="contact" className="contact-section">
       <Container>
-        {/* Header */}
+        
         <div className="header text-center">
           <h1>📬 Contact Me</h1>
           <p>Feel free to reach out using the form below or connect with me on social media!</p>
         </div>
 
-        {/* Social Icons */}
+        
         <Row className="justify-content-center mt-4">
           <Col lg={8} md={10} sm={12}>
             <div className="social-links text-center">
@@ -69,7 +68,7 @@ function Contact() {
           </Col>
         </Row>
 
-        {/* Contact Form */}
+       
         <Row className="justify-content-center mt-4">
           <Col lg={8} md={10} sm={12}>
             <Form className="contact-form" onSubmit={handleSubmit}>

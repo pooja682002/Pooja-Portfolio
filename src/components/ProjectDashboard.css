@@ -9,7 +9,7 @@
 .project-dashboard h2 {
    font-size: 2.5rem;
    margin-bottom: 30px;
-   text-align: center;
+   text-align: left;
    max-width: 550px;
    color: #333;
    font-weight: bold;
@@ -19,11 +19,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: #ffffff; /* White background for form */
+  background: #ffffff; 
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 30px;
-  /* Shadow for depth */
+ 
 }
 
 .image-preview {
@@ -58,7 +58,7 @@
 }
 
 .add-project-form button {
-  background-color: #e6e8eb;
+  background-color: #a7bee0;
   color: rgb(17, 16, 16);
   padding: 10px;
   border: none;
@@ -68,7 +68,7 @@
 }
 
 .add-project-form button:hover {
-  background-color: #aeb4b9; /* Darker blue for hover */
+  background-color: #aeb4b9; 
 }
 
 .project-table {
@@ -80,25 +80,25 @@
 .project-table th, .project-table td {
   padding: 15px;
   text-align: left;
-  border: 1px solid #ddd; /* Light border similar to Skills Dashboard */
+  border: 1px solid #ddd; 
   font-size: 1rem;
 }
 
 .project-table th {
-  background-color: #34495e; /* Blue background for header */
+  background-color: #34495e; 
   color: white;
   font-weight: bold;
 }
 
 .project-table td {
-  border-color: #ddd; /* Light border for table data */
+  border-color: #ddd; 
 }
 
 .project-image {
   width: 80px;
   height: 80px;
   border-radius: 8px;
-  object-fit: cover; /* Ensure the image retains its aspect ratio */
+  object-fit: cover; 
 }
 
 .add-button {
@@ -106,26 +106,18 @@
   margin: 5px;
   cursor: pointer;
   border: none;
-  background-color: white; /* White background */
+  background-color: white; 
   color: black;
   border-radius: 5px;
   font-size: 14px;
   transition: background-color 0.3s ease;
 }
 
-.edit-button, .delete-button {
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-  border: none;
-  background-color: white;
-  color: black;
-  border-radius: 5px;
-  font-size: 14px;
-}
+
+
 
 .add-button:hover, .edit-button:hover, .delete-button:hover {
-  background-color: #757779; /* Darker blue for hover */
+  background-color: #757779; 
 }
 
 button {
@@ -137,7 +129,7 @@ button:focus {
 }
 
 button:active {
-  transform: scale(0.98); /* Slightly shrink the button on click for better feedback */
+  transform: scale(0.98); 
 }
 
 .edit-button,.delete-button {
@@ -150,7 +142,7 @@ button:active {
   border-radius: 5px;
   font-size: 14px;
   transition: background-color 0.3s ease;
-  background-color: white; 
+   
 }
 
 button:focus {
@@ -214,7 +206,7 @@ button:active {
   background-color: #95a5a6;
 }
 
-/* Responsive adjustments for small screens */
+
 @media (max-width: 820px) {
   .project-dashboard {
     margin-left: 0;

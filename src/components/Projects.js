@@ -12,7 +12,7 @@ function Projects() {
   useEffect(() => {
     axios.get("http://localhost:8080/api/projects")
       .then((response) => {
-        setProjects(response.data); // Extract projects from API response
+        setProjects(response.data); 
         setLoading(false);
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ function Projects() {
             <div className="card-hover">
               <Card.Img
                 variant="top"
-                src={`data:image/png;base64,${project.imageBase64}`} // Convert Base64 to Image
+                src={`data:image/png;base64,${project.imageBase64}`} 
                 alt={project.title}
                 className="project-image"
               />

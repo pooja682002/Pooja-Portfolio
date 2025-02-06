@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Button, Alert } from "react-bootstrap"; // Importing Bootstrap components
+import { Modal, Button, Alert } from "react-bootstrap"; 
 import "./ProjectDashboard.css";
 
 function ProjectDashboard() {
@@ -9,30 +9,30 @@ function ProjectDashboard() {
   const [editingProject, setEditingProject] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [deleteModalShow, setDeleteModalShow] = useState(false); // State for delete confirmation modal
-  const [projectToDelete, setProjectToDelete] = useState(null); // State to store the project to be deleted
-  const [modalSuccessMessage, setModalSuccessMessage] = useState(""); // Success message state
-  const [modalErrorMessage, setModalErrorMessage] = useState(""); // Error message state
+  const [deleteModalShow, setDeleteModalShow] = useState(false); 
+  const [projectToDelete, setProjectToDelete] = useState(null); 
+  const [modalSuccessMessage, setModalSuccessMessage] = useState(""); 
+  const [modalErrorMessage, setModalErrorMessage] = useState(""); 
 
-  // Fetch projects
+  
   useEffect(() => {
     axios.get("http://localhost:8080/api/projects")
       .then((res) => setProjects(res.data))
       .catch((err) => console.error("Error fetching projects:", err));
   }, []);
 
-  // Handle form input changes
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProject({ ...newProject, [name]: value });
   };
 
-  // Handle file input
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setNewProject({ ...newProject, image: file });
 
-    // Show image preview
+    
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => setPreviewImage(reader.result);
@@ -40,11 +40,11 @@ function ProjectDashboard() {
     }
   };
 
-  // Add a new project
+ 
   const handleAddProject = async () => {
     if (!newProject.title || !newProject.description || !newProject.image) {
       setModalErrorMessage("All fields are necessary.");
-      setModalSuccessMessage(""); // Clear success message if any
+      setModalSuccessMessage(""); 
       return;
     }
 
@@ -58,41 +58,41 @@ function ProjectDashboard() {
       setNewProject({ title: "", description: "", image: null });
       setPreviewImage(null);
       setModalSuccessMessage("Project added successfully!");
-      setModalErrorMessage(""); // Clear error message
+      setModalErrorMessage(""); 
 
       setShowModal(false);
-      window.location.reload(); // Refresh the list
+      window.location.reload(); 
     } catch (err) {
       console.error("Error adding project:", err);
       setModalErrorMessage("Error adding the project.");
-      setModalSuccessMessage(""); // Clear success message if any
+      setModalSuccessMessage(""); 
     }
   };
 
-  // Delete project
+  
   const handleDeleteProject = async () => {
     try {
       await axios.delete(`http://localhost:8080/api/projects/${projectToDelete.id}`);
       setProjects(projects.filter((project) => project.id !== projectToDelete.id));
-      setDeleteModalShow(false); // Close delete confirmation modal
+      setDeleteModalShow(false); 
     } catch (err) {
       console.error("Error deleting project:", err);
     }
   };
 
-  // Handle Edit
+  
   const handleEditProject = (project) => {
     setEditingProject(project);
     setNewProject({ title: project.title, description: project.description, image: null });
-    setPreviewImage(`data:image/png;base64,${project.imageBase64}`); // Show existing image
-    setShowModal(true); // Open modal for editing
+    setPreviewImage(`data:image/png;base64,${project.imageBase64}`); 
+    setShowModal(true); 
   };
 
-  // Update Project
+ 
   const handleUpdateProject = async () => {
     if (!newProject.title || !newProject.description) {
       setModalErrorMessage("All fields are necessary.");
-      setModalSuccessMessage(""); // Clear success message if any
+      setModalSuccessMessage(""); 
       return;
     }
 
@@ -106,31 +106,31 @@ function ProjectDashboard() {
       setEditingProject(null);
       setPreviewImage(null);
       setModalSuccessMessage("Project updated successfully!");
-      setModalErrorMessage(""); // Clear error message
+      setModalErrorMessage(""); 
 
       setShowModal(false);
       window.location.reload();
     } catch (err) {
       console.error("Error updating project:", err);
       setModalErrorMessage("Error updating the project.");
-      setModalSuccessMessage(""); // Clear success message if any
+      setModalSuccessMessage(""); 
     }
   };
 
-  // Clear messages when closing modal
+  
   const handleCloseModal = () => {
     setShowModal(false);
-    setModalSuccessMessage(""); // Clear success message when modal is closed
-    setModalErrorMessage(""); // Clear error message when modal is closed
+    setModalSuccessMessage(""); 
+    setModalErrorMessage(""); 
   };
 
-  // Show delete confirmation modal
+  
   const handleConfirmDelete = (project) => {
     setProjectToDelete(project);
     setDeleteModalShow(true);
   };
 
-  // Close delete confirmation modal without deleting
+  
   const handleCancelDelete = () => {
     setDeleteModalShow(false);
     setProjectToDelete(null);
@@ -140,12 +140,12 @@ function ProjectDashboard() {
     <div className="project-dashboard">
       <h2>Projects Records</h2>
 
-      {/* Button to open modal for Add New Project */}
+      
       <Button variant="primary" onClick={() => setShowModal(true)} className="add-new-button">
         Add New Project
       </Button>
 
-      {/* Projects Table */}
+     
       <table className="project-table">
         <thead>
           <tr>
@@ -172,7 +172,6 @@ function ProjectDashboard() {
         </tbody>
       </table>
 
-      {/* Modal for Add/Edit Project */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>{editingProject ? "Edit Project" : "Add Project"}</Modal.Title>
@@ -194,7 +193,7 @@ function ProjectDashboard() {
             className="form-control"
           />
           
-          {/* Show existing image when editing */}
+          
           {editingProject && previewImage && (
             <div className="image-preview">
               <p>Current Image:</p>
@@ -204,7 +203,7 @@ function ProjectDashboard() {
 
           <input type="file" onChange={handleFileChange} className="form-control" />
           
-          {/* Show new preview when a new image is uploaded */}
+        
           {previewImage && newProject.image && (
             <div className="image-preview">
               <p>New Image Preview:</p>
@@ -212,7 +211,6 @@ function ProjectDashboard() {
             </div>
           )}
 
-          {/* Display Success/Failure Message Inside Modal */}
           {modalErrorMessage && <Alert variant="danger">{modalErrorMessage}</Alert>}
           {modalSuccessMessage && <Alert variant="success">{modalSuccessMessage}</Alert>}
         </Modal.Body>
@@ -229,7 +227,7 @@ function ProjectDashboard() {
         </Modal.Footer>
       </Modal>
 
-      {/* Delete Confirmation Modal */}
+      
       <Modal show={deleteModalShow} onHide={handleCancelDelete}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Deletion</Modal.Title>

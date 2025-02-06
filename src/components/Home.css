@@ -1,11 +1,11 @@
-/* General Reset for Images */
+
 img {
-  max-width: 100%; /* Ensures images never overflow their container */
-  height: auto; /* Maintains aspect ratio */
+  max-width: 100%; 
+  height: auto; 
   display: block;
 }
 
-/* Home Section */
+
 .home {
   display: flex;
   justify-content: space-between;
@@ -13,13 +13,13 @@ img {
   padding: 50px;
   background-color: #f7f5e7;
   height: 100vh;
-  overflow-x: hidden; /* Prevent horizontal scrolling issues */
-  box-sizing: border-box; /* Includes padding and borders in width/height calculations */
+  overflow-x: hidden; 
+  box-sizing: border-box; 
 }
 
 .profile {
   max-width: 50%;
-  padding: 10px; /* Padding for consistency */
+  padding: 10px; 
   box-sizing: border-box;
 }
 
@@ -37,7 +37,7 @@ img {
   color: #377e9b;
 }
 
-/* Button Styling */
+
 .btn {
   margin-left: 100px;
   color: #ffffff;
@@ -52,7 +52,7 @@ img {
   overflow: hidden;
 }
 
-/* Pastel Button Theme */
+
 .pastel-btn {
   background-color: #a7c7e7;
 }
@@ -68,11 +68,11 @@ img {
   transform: scale(0.95);
 }
 
-/* Profile Image Styling */
+
 .profile-image img {
   width: 100%;
-  max-width: 450px; /* Limit the max width of images */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 450px;
+  height: auto; 
   margin-left: 30px;
   margin-right: 100px;
   object-fit: cover;
@@ -80,9 +80,7 @@ img {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
 
-/* For Extra Small Devices (Phones, less than 576px) */
 @media (max-width: 575.98px) {
   .home {
     flex-direction: column;
@@ -115,11 +113,11 @@ img {
   }
 
   .profile-image img {
-    margin: 20px auto; /* Center image */
+    margin: 20px auto; 
   }
 }
 
-/* For Small Devices (Tablets, 576px to 767px) */
+
 @media (min-width: 576px) and (max-width: 767.98px) {
   .home {
     flex-direction: column;
@@ -144,11 +142,11 @@ img {
   }
 
   .profile-image img {
-    margin: 20px auto; /* Center image */
+    margin: 20px auto;
   }
 }
 
-/* For Medium Devices (Desktops, 768px to 991px) */
+
 @media (min-width: 768px) and (max-width: 991.98px) {
   .home {
     flex-direction: row;
@@ -157,7 +155,7 @@ img {
   }
 
   .profile {
-    padding: 20px; /* Padding for spacing */
+    padding: 20px; 
   }
 
   .profile h1 {
@@ -179,11 +177,11 @@ img {
   .profile-image img {
     width: auto;
     height: auto;
-    max-width: 100%; /* Ensure image doesn't overflow */
+    max-width: 100%;
   }
 }
 
-/* For Large Devices (Desktops, 992px and up) */
+
 @media (min-width: 992px) {
   .home {
     flex-direction: row;

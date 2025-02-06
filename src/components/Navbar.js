@@ -56,7 +56,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg custom-navbar bg-light fixed-top">
       <div className="container">
-        {/* Branding / Name Section */}
+       
         <div
           className="navbar-brand custom-brand "
           onClick={() => navigate("/")}
@@ -64,7 +64,6 @@ const Navbar = () => {
           POOJA JOSEPH
         </div>
 
-        {/* Toggler for mobile view */}
         <button
           className="navbar-toggler"
           type="button"
@@ -74,7 +73,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navigation Links */}
+      
         <div className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`} id="navbarNav">
           <ul className="navbar-nav ms-auto">
             {[

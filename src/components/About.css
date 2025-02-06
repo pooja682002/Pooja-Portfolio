@@ -1,4 +1,4 @@
-/* About Section */
+
 .about-section {
   position: relative;
   background: linear-gradient(135deg, #f7f5e7, #d0dfe9);
@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-/* Title */
+
 .about-title {
   font-size: 3rem;
   font-weight: bold;
@@ -23,7 +23,7 @@
   animation: fadeIn 1s ease-in-out;
 }
 
-/* About Content */
+
 .about-content {
   max-width: 800px;
   margin: 0 auto;
@@ -38,7 +38,7 @@
   color: #273849;
 }
 
-/* Background Animations */
+
 .background-animations {
   position: absolute;
   top: 0;
@@ -49,7 +49,6 @@
   z-index: -1;
 }
 
-/* Circles */
 .circle {
   position: absolute;
   width: 200px;
@@ -59,7 +58,7 @@
   animation: float 6s infinite ease-in-out;
 }
 
-/* Randomly Positioned Circles */
+
 .circle:nth-child(1) {
   top: 10%;
   left: 20%;
@@ -76,7 +75,7 @@
   animation-delay: 4s;
 }
 
-/* Keyframes */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -111,9 +110,7 @@
   }
 }
 
-/* Responsive Design */
 
-/* Extra Small Devices (Phones, less than 576px) */
 @media (max-width: 575.98px) {
   .about-title {
     font-size: 2.5rem;
@@ -136,7 +133,6 @@
   }
 }
 
-/* Small Devices (Tablets, 576px to 767px) */
 @media (min-width: 576px) and (max-width: 767.98px) {
   .about-title {
     font-size: 3rem;
@@ -159,7 +155,7 @@
   }
 }
 
-/* Medium Devices (Desktops, 768px to 991px) */
+
 @media (min-width: 768px) and (max-width: 991.98px) {
   .about-title {
     font-size: 3.5rem;
@@ -182,7 +178,7 @@
   }
 }
 
-/* Large Devices (Desktops, 992px and up) */
+
 @media (min-width: 992px) {
   .about-title {
     font-size: 4rem;

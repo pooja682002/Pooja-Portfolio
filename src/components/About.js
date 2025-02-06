@@ -5,10 +5,10 @@ function AboutMe() {
   return (
     <section id="about" className="about-section">
       <div className="container">
-        {/* About Me Title */}
+       
         <h2 className="about-title">ABOUT ME</h2>
 
-        {/* Animated Details Section */}
+        
         <div className="about-content">
           <p className="about-paragraph">
             Hi! I’m <strong>Pooja Joseph</strong>, an enthusiastic individual with a deep passion for both creative and technical pursuits. My love for journaling allows me to capture thoughts and ideas, swimming keeps me active and refreshed, and quality time with friends helps me stay grounded and inspired.
@@ -18,7 +18,7 @@ function AboutMe() {
           </p>
         </div>
 
-        {/* Decorative Elements */}
+        
         <div className="background-animations">
           <div className="circle"></div>
           <div className="circle"></div>

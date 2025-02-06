@@ -7,11 +7,11 @@ function Education() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data from the backend
+  
   useEffect(() => {
     const fetchEducationData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/education"); // Adjust the URL as per your backend configuration
+        const response = await axios.get("http://localhost:8080/api/education"); 
         if (response.data.statusCode === 200) {
           setEducationData(response.data.response);
         } else {
@@ -30,18 +30,18 @@ function Education() {
   return (
     <section id="education" className="education-section">
       <div className="container">
-        {/* Section Header */}
+       
         <div className="header">
           <h2>📘 Education Journey</h2>
         </div>
 
-        {/* Show Loading Spinner */}
+        
         {loading && <p>Loading...</p>}
 
-        {/* Show Error Message */}
+       
         {error && <p className="error">{error}</p>}
 
-        {/* Education Cards */}
+      
         <div className="education-cards">
           {educationData.map((education) => (
             <div className="education-card" key={education.id}>

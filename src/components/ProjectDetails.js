@@ -4,17 +4,17 @@ import axios from "axios";
 import "./ProjectDetails.css";
 
 function ProjectDetails() {
-  const { id } = useParams(); // Fetch the project ID from the URL
-  const [project, setProject] = useState(null); // Store project data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const { id } = useParams(); 
+  const [project, setProject] = useState(null); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
-    // Fetch project details from the backend
+    
     axios.get(`http://localhost:8080/api/projects/${id}`)
- // Match backend API endpoint
+ 
       .then((response) => {
-        setProject(response.data); // Assign project details from the backend response
+        setProject(response.data); 
         console.log(response)
         setLoading(false);
       })

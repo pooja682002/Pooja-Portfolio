@@ -226,9 +226,6 @@ button:active {
   background-color: #95a5a6;
 }
 
-/* Media Queries for responsiveness */
-
-/* For Galaxy S20 Ultra (1440px wide screen) */
 @media (max-width: 1440px) {
   .education-container {
     padding: 40px;
