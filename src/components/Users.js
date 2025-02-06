@@ -10,12 +10,13 @@ const Users = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalSuccessMessage, setModalSuccessMessage] = useState("");
   const [modalErrorMessage, setModalErrorMessage] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  
   const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/users");
@@ -30,25 +31,23 @@ const Users = () => {
   const handleAddOrUpdateUser = async () => {
     if (newUser.username && newUser.password) {
       try {
-        setModalErrorMessage(""); // Clear any error message
+        setModalErrorMessage(""); 
         if (newUser.id) {
-          // Update existing user
           await axios.put(`http://localhost:8080/api/users/${newUser.id}`, {
             username: newUser.username,
             password: newUser.password,
           });
           setModalSuccessMessage("User updated successfully!");
         } else {
-          // Add new user
           await axios.post("http://localhost:8080/api/users/register", {
             username: newUser.username,
             password: newUser.password,
           });
           setModalSuccessMessage("User added successfully!");
         }
-        fetchUsers(); // Re-fetch users after adding or updating
-        setNewUser({ id: null, username: "", password: "" }); // Clear form
-        setShowModal(false); // Close modal
+        fetchUsers(); 
+        setNewUser({ id: null, username: "", password: "" }); 
+        setShowModal(false); 
       } catch (error) {
         console.error("Error adding/updating user:", error);
         setModalErrorMessage("Error adding/updating user.");
@@ -58,41 +57,45 @@ const Users = () => {
     }
   };
 
-  // Handle delete user
-  const handleDeleteUser = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8080/api/users/${id}`);
-      fetchUsers(); // Re-fetch users after deletion
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
+  const confirmDeleteUser = (id) => {
+    setUserToDelete(id);
+    setShowDeleteModal(true);
   };
 
-  // Handle modal close and clear messages
+  const handleDeleteUser = async () => {
+    if (userToDelete) {
+      try {
+        await axios.delete(`http://localhost:8080/api/users/${userToDelete}`);
+        fetchUsers();
+      } catch (error) {
+        console.error("Error deleting user:", error);
+      }
+    }
+    setShowDeleteModal(false);
+    setUserToDelete(null);
+  };
+
   const handleCloseModal = () => {
     setShowModal(false);
-    setModalSuccessMessage(""); // Clear success message
-    setModalErrorMessage(""); // Clear error message
+    setModalSuccessMessage(""); 
+    setModalErrorMessage(""); 
   };
 
-  // Reset success and error messages when modal opens
   useEffect(() => {
     if (showModal) {
-      setModalSuccessMessage(""); // Clear success message when modal opens
-      setModalErrorMessage(""); // Clear error message when modal opens
+      setModalSuccessMessage(""); 
+      setModalErrorMessage(""); 
     }
-  }, [showModal]); // Only run when showModal state changes
+  }, [showModal]); 
 
   return (
     <div className="users-container">
       <h2>Users Records</h2>
 
-      {/* Button to open modal for Add New User */}
       <Button variant="primary" onClick={() => setShowModal(true)} className="add-new-button">
         Add New User
       </Button>
 
-      {/* Users Table */}
       {loading ? (
         <p>Loading users...</p>
       ) : (
@@ -117,16 +120,16 @@ const Users = () => {
                       className="edit-button"
                       onClick={() => {
                         setNewUser({ id: user.id, username: user.username, password: "" });
-                        setShowModal(true); // Open modal for editing
+                        setShowModal(true); 
                       }}
                     >
-                       Edit
+                      Edit
                     </button>
                     <button
                       className="delete-button"
-                      onClick={() => handleDeleteUser(user.id)}
+                      onClick={() => confirmDeleteUser(user.id)}
                     >
-                       Delete
+                      Delete
                     </button>
                   </td>
                 </tr>
@@ -136,7 +139,6 @@ const Users = () => {
         </table>
       )}
 
-      {/* Modal for Add/Edit User */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>{newUser.id ? "Edit User" : "Add User"}</Modal.Title>
@@ -157,7 +159,6 @@ const Users = () => {
             className="form-control"
           />
 
-          {/* Display Success/Failure Message Inside Modal */}
           {modalErrorMessage && <Alert variant="danger">{modalErrorMessage}</Alert>}
           {modalSuccessMessage && <Alert variant="success">{modalSuccessMessage}</Alert>}
         </Modal.Body>
@@ -165,11 +166,26 @@ const Users = () => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button
-            variant="primary"
-            onClick={handleAddOrUpdateUser}
-          >
+          <Button variant="primary" onClick={handleAddOrUpdateUser}>
             {newUser.id ? "Update User" : "Add User"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this user?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            No
+          </Button>
+          <Button variant="danger" onClick={handleDeleteUser}>
+            Yes, Delete
           </Button>
         </Modal.Footer>
       </Modal>

@@ -12,6 +12,8 @@ function EducationDashboard() {
   const [newLogo, setNewLogo] = useState(null);
   const [responseMessage, setResponseMessage] = useState("");
   const [showModal, setShowModal] = useState(false); // For modal visibility
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // For delete confirmation modal
+  const [idToDelete, setIdToDelete] = useState(null); // ID of the education record to delete
 
   // Fetch education records from backend
   const fetchEducation = async () => {
@@ -29,14 +31,22 @@ function EducationDashboard() {
   }, []);
 
   // Handle delete education record
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
+    setIdToDelete(id); // Store ID to delete
+    setShowDeleteModal(true); // Show delete confirmation modal
+  };
+
+  // Confirm deletion
+  const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/education/${id}`);
-      setEducationRecords(educationRecords.filter(record => record.id !== id));
+      await axios.delete(`http://localhost:8080/api/education/${idToDelete}`);
+      setEducationRecords(educationRecords.filter(record => record.id !== idToDelete));
       setResponseMessage("Education record deleted successfully!");
+      setShowDeleteModal(false); // Close delete modal
     } catch (error) {
       console.error("Error deleting education record:", error);
       setResponseMessage("Error deleting education record.");
+      setShowDeleteModal(false); // Close delete modal
     }
   };
 
@@ -244,6 +254,24 @@ function EducationDashboard() {
             onClick={editingEducation ? handleUpdate : handleAddEducation}
           >
             {editingEducation ? "Update Education" : "Add Education"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Education Record</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Are you sure you want to delete this education record?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            No
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Yes, Delete
           </Button>
         </Modal.Footer>
       </Modal>

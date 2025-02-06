@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Button, Alert } from "react-bootstrap"; // Importing Bootstrap components for modal
-import "./SkillsDashboard.css"; // Import CSS for styling
+import { Modal, Button, Alert } from "react-bootstrap"; 
+import "./SkillsDashboard.css"; 
 
 function SkillsDashboard() {
   const [skills, setSkills] = useState([]);
-  const [editingSkill, setEditingSkill] = useState(null);  // Initially null for "Add New"
+  const [editingSkill, setEditingSkill] = useState(null);  
   const [newSkillName, setNewSkillName] = useState("");
   const [newSkillLogo, setNewSkillLogo] = useState(null);
-  const [showModal, setShowModal] = useState(false); // Modal visibility state
-  const [successMessage, setSuccessMessage] = useState(""); // Success message state
-  const [errorMessage, setErrorMessage] = useState(""); // Error message state
-
+  const [showModal, setShowModal] = useState(false); 
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // For delete confirmation modal
+  const [skillToDelete, setSkillToDelete] = useState(null); // Store skill ID for deletion
+  const [successMessage, setSuccessMessage] = useState(""); 
+  const [errorMessage, setErrorMessage] = useState(""); 
+  
   // Handle Edit - Populates the modal with the existing values
   const handleEdit = (skill) => {
     setEditingSkill(skill);
     setNewSkillName(skill.name); // Prepopulate with existing name
-    setNewSkillLogo(null); // Reset new logo selection
+    setNewSkillLogo(null); // Reset new logo selection (can edit only name if no new logo selected)
     setSuccessMessage(""); // Clear any previous success message
     setErrorMessage(""); // Clear any previous error message
     setShowModal(true); // Open modal for editing
@@ -46,10 +48,11 @@ function SkillsDashboard() {
   }, []);
 
   // Handle delete skill
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/skills/${id}`);
-      setSkills(skills.filter((skill) => skill.id !== id));
+      await axios.delete(`http://localhost:8080/api/skills/${skillToDelete}`);
+      setSkills(skills.filter((skill) => skill.id !== skillToDelete));
+      setShowDeleteModal(false); // Close delete confirmation modal
     } catch (error) {
       console.error("Error deleting skill:", error);
     }
@@ -172,7 +175,7 @@ function SkillsDashboard() {
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(skill.id)}
+                  onClick={() => { setSkillToDelete(skill.id); setShowDeleteModal(true); }}
                   className="delete-button"
                 >
                   Delete
@@ -227,6 +230,24 @@ function SkillsDashboard() {
             onClick={editingSkill ? handleUpdate : handleAddSkill}
           >
             {editingSkill ? "Update Skill" : "Add Skill"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Confirmation Modal for Delete */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Are you sure?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Do you really want to delete this skill? .</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            No
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Yes, Delete
           </Button>
         </Modal.Footer>
       </Modal>

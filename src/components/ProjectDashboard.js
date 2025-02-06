@@ -9,6 +9,8 @@ function ProjectDashboard() {
   const [editingProject, setEditingProject] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [deleteModalShow, setDeleteModalShow] = useState(false); // State for delete confirmation modal
+  const [projectToDelete, setProjectToDelete] = useState(null); // State to store the project to be deleted
   const [modalSuccessMessage, setModalSuccessMessage] = useState(""); // Success message state
   const [modalErrorMessage, setModalErrorMessage] = useState(""); // Error message state
 
@@ -68,10 +70,11 @@ function ProjectDashboard() {
   };
 
   // Delete project
-  const handleDeleteProject = async (id) => {
+  const handleDeleteProject = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/projects/${id}`);
-      setProjects(projects.filter((project) => project.id !== id));
+      await axios.delete(`http://localhost:8080/api/projects/${projectToDelete.id}`);
+      setProjects(projects.filter((project) => project.id !== projectToDelete.id));
+      setDeleteModalShow(false); // Close delete confirmation modal
     } catch (err) {
       console.error("Error deleting project:", err);
     }
@@ -121,6 +124,18 @@ function ProjectDashboard() {
     setModalErrorMessage(""); // Clear error message when modal is closed
   };
 
+  // Show delete confirmation modal
+  const handleConfirmDelete = (project) => {
+    setProjectToDelete(project);
+    setDeleteModalShow(true);
+  };
+
+  // Close delete confirmation modal without deleting
+  const handleCancelDelete = () => {
+    setDeleteModalShow(false);
+    setProjectToDelete(null);
+  };
+
   return (
     <div className="project-dashboard">
       <h2>Projects Records</h2>
@@ -150,7 +165,7 @@ function ProjectDashboard() {
               <td>{project.description}</td>
               <td>
                 <button onClick={() => handleEditProject(project)} className="edit-button">Edit</button>
-                <button onClick={() => handleDeleteProject(project.id)} className="delete-button">Delete</button>
+                <button onClick={() => handleConfirmDelete(project)} className="delete-button">Delete</button>
               </td>
             </tr>
           ))}
@@ -210,6 +225,24 @@ function ProjectDashboard() {
             onClick={editingProject ? handleUpdateProject : handleAddProject}
           >
             {editingProject ? "Update Project" : "Add Project"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal show={deleteModalShow} onHide={handleCancelDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Deletion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Are you sure you want to delete this project?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCancelDelete}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDeleteProject}>
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>
