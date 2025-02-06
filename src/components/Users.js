@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Modal, Button, Alert } from "react-bootstrap"; // Importing Bootstrap components
+import { Modal, Button, Alert } from "react-bootstrap"; 
 import "./Users.css"; 
 
 const Users = () => {
@@ -15,7 +15,7 @@ const Users = () => {
     fetchUsers();
   }, []);
 
-  // Fetch users from the backend
+  
   const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/users");
@@ -27,7 +27,6 @@ const Users = () => {
     }
   };
 
-  // Handle add or update user
   const handleAddOrUpdateUser = async () => {
     if (newUser.username && newUser.password) {
       try {

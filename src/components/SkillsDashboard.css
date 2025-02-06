@@ -1,38 +1,40 @@
+/* General Container */
 .skills-container {
   padding: 50px;
-  background-color: #f9f9f9; 
-  width: 1600px;
-   min-height: 600px; 
- margin-left: 230px;
-
+  background-color: #f9f9f9;
+  width: 100%;
+  max-width: 1600px;
+  min-height: 600px;
+  margin-left: 230px;
 }
+
+/* Title */
 .skills-container h2 {
   font-size: 2.5rem;
-  margin-bottom: 30px;
-  text-align: center;
-  max-width: 550px;
-  color: #333;
-  font-weight: bold;
-   
+    margin-bottom: 30px;
+    text-align: left;
+    color: #333;
+    font-weight: bold;
+  }
+
+
+/* Table Wrapper */
+.table-wrapper {
+  width: 100%;
+  max-width: 90%;
+  overflow-x: auto;
 }
 
+/* Table */
 .skills-table {
   width: 100%;
+  max-width: 90%;
   border-collapse: collapse;
   margin-top: 30px;
 }
-.current-logo-img,
-.new-logo-preview img {
-  height: 50px;
-  width: 50px;
-  object-fit: contain;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  padding: 5px;
-  border-radius: 5px;
-}
 
-.skills-table th, .skills-table td {
+.skills-table th,
+.skills-table td {
   padding: 15px;
   text-align: left;
   border: 1px solid #ddd;
@@ -45,102 +47,87 @@
   font-weight: bold;
 }
 
+/* Skill Logo */
 .skill-logo {
-  width: 40px; 
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  object-fit: cover; 
+  object-fit: cover;
+}
+
+/* Buttons */
+.submit-button,
+.add-button,
+.edit-button,
+.delete-button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button {
+  background-color: #008cba;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.edit-button {
+  background-color: #449c98;
+  color: white;
+}
+
+.delete-button {
+  background-color: #ee7474;
+  color: white;
 }
 
 .submit-button {
-  padding: 12px 25px;
-  margin: 10px;
-  cursor: pointer;
-  border: none;
   background-color: #34495e;
   color: white;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-.add-button:hover, .edit-button:hover, .delete-button:hover, .update-button:hover {
-  background-color: white; 
 }
 
-.add-container, .edit-container {
+.add-button:hover {
+  background-color: #007bb5;
+}
+
+.edit-button:hover {
+  background-color: #e69b00;
+}
+
+.delete-button:hover {
+  background-color: #c93030;
+}
+
+/* Forms */
+.add-container,
+.edit-container {
   margin-top: 30px;
-  background-color: #ffffff; 
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 60px;
-  margin: 20px auto; /* Center the form */
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
 }
 
-.add-container h3, .edit-container h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #d63c3c;
-  font-weight: bold;
-}
-
-.add-container input, .edit-container input {
+.add-container input,
+.edit-container input {
   margin: 12px 0;
   padding: 12px;
-  width: 70%;
-  max-width: 1500px; /* Limiting the max width for input fields */
+  width: 100%;
   border-radius: 5px;
   border: 1px solid #ada9a9;
   font-size: 1rem;
 }
 
-.update-button {
-  background-color: white; 
-}
-
-.update-button:hover {
-  background-color: white; 
-}
-
-.add-button {
-  background-color: white; 
-  background: #34495e; /* Blue background */
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.add-button:hover {
-  background-color: white;
-}
-
-.edit-button,.delete-button {
-  padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    border: none;
-    background-color: white;
-    color: black;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-  background-color: white; 
-}
-
-button:focus {
-  outline: none;
-}
-
-button:active {
-  transform: scale(0.98); 
-}
-/* Modal styles */
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -155,70 +142,6 @@ button:active {
 
 .modal-content {
   background-color: white;
-  padding: 40px; /* Increased padding */
-  border-radius: 10px;
-  width: 500px; /* Increased width */
-  text-align: center;
-}
-
-.error {
-  color: rgb(233, 208, 208);
-  margin-bottom: 10px;
-}
-
-.close-button {
-  background-color: #a8c0d3;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.submit-button {
-  background-color: #95be96;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.add-button {
-  background-color: #008cba;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.skill-logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.logo-preview-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-top: 10px;
-}
-/* Add the Add New Skill button at the top */
-.add-button {
-  background-color: #008cba;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 20px; /* Space below the button */
-}
-
-/* Modal styles */
-.modal-content {
-  background-color: white;
   padding: 40px;
   border-radius: 10px;
   width: 500px;
@@ -230,9 +153,8 @@ button:active {
   margin-bottom: 10px;
 }
 
-.submit-button, .close-button {
-  background-color: #4caf50;
-  color: white;
+.submit-button,
+.close-button {
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -250,8 +172,94 @@ button:active {
   margin-top: 10px;
 }
 
-.current-logo-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+/* 🌍 RESPONSIVE DESIGN */
+
+/* Tablet Screens */
+@media (max-width: 1024px) {
+  .skills-container {
+    margin-left: 0;
+    padding: 30px;
+  }
+
+  .skills-container h2 {
+    font-size: 2rem;
+  }
+
+  .table-wrapper {
+    max-width: 95%;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .add-container,
+  .edit-container {
+    width: 90%;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 768px) {
+  .skills-container {
+    padding: 20px;
+  }
+
+  .skills-container h2 {
+    font-size: 1.8rem;
+    max-width: 100%;
+  }
+
+  .table-wrapper {
+    max-width: 100%;
+    overflow-x: scroll;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .add-button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .add-container,
+  .edit-container {
+    padding: 20px;
+    width: 95%;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+/* Small Mobile Screens */
+@media (max-width: 480px) {
+  .skills-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .submit-button,
+  .add-button,
+  .edit-button,
+  .delete-button {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
 }

@@ -34,7 +34,7 @@ function Projects() {
       <div className="projects-grid">
         {projects.map((project) => (
           <div className="project-card" key={project.id}>
-            <Card className="card-hover">
+            <div className="card-hover">
               <Card.Img
                 variant="top"
                 src={`data:image/png;base64,${project.imageBase64}`} // Convert Base64 to Image
@@ -47,7 +47,7 @@ function Projects() {
                   <Button className="btn-custom">View Details</Button>
                 </Link>
               </Card.Body>
-            </Card>
+            </div>
           </div>
         ))}
       </div>

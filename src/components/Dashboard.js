@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Users from "./Users";
 import "./dashboard.css";
@@ -7,6 +7,7 @@ import EducationDashboard from "./EducationDashboard";
 import ProjectDashboard from "./ProjectDashboard";
 
 function Dashboard({ setAuthenticated }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false); // State for sidebar toggle
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,10 +16,19 @@ function Dashboard({ setAuthenticated }) {
     navigate("/login");
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <div className="dashboard-container">
+      {/* Hamburger Menu */}
+      <div className="hamburger" onClick={toggleSidebar}>
+        <span className="material-icons">menu</span>
+      </div>
+
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${sidebarOpen ? "active" : ""}`}>
         <ul>
           <li>
             <Link

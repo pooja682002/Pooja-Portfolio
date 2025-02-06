@@ -24,7 +24,7 @@
   
   /* Users Table */
   .users-table {
-    width: 100%;
+    width: 60%;
     border-collapse: collapse;
     min-width: 600px; /* Forces horizontal scrolling on small screens */
   }
@@ -50,7 +50,7 @@
   
   /* Add User Form */
   .add-user-form {
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -175,12 +175,13 @@
   
   .add-new-button {
     margin-bottom: 15px;
-    padding: 10px 15px;
+    padding: 50px 15px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: auto;
   }
   
   .add-new-button:hover {
